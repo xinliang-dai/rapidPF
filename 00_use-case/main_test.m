@@ -47,6 +47,10 @@ Nconnections = height(conn);
 %% main
 % case-file-generator
 mpc_merge = run_case_file_generator(mpc_trans, mpc_dist, conn, fields_to_merge, names);
+% mpc_merge.bus(:,5:6)=0;
+% mpc_merge.branch(:,5)=0;
+% mpc_merge.branch(:,3)=0;
+
 % case-file-splitter
 mpc_split = run_case_file_splitter(mpc_merge, conn, names);
 
@@ -79,9 +83,9 @@ end
 option              = AladinOption;
 option.problem_type = problem_type;
 option.iter_max  = 20;
-option.tol       = 1e-8;
+option.tol       = 1e-6;
 option.mu0       = 1e2;
-option.rho0      = 1e2;
+option.rho0      = 1e1;
 option.nlp       = NLPoption;
 option.nlp.solver = solver;
 option.nlp.iter_display = true;
@@ -99,6 +103,6 @@ mpc_sol_aladin = back_to_mpc(mpc_split, xsol, logg);
 
 % compare result
 compare_results(xval, xsol)
-compare_constraints_violation(problem, logg);
-compare_power_flow_between_regions(mpc_sol_aladin, mpc_merge.connections, mpc_split.regions, conn(:,1:2));
-deviation_violation_iter_plot(mpc_split, xval, logg, names);
+% compare_constraints_violation(problem, logg);
+% compare_power_flow_between_regions(mpc_sol_aladin, mpc_merge.connections, mpc_split.regions, conn(:,1:2));
+% deviation_violation_iter_plot(mpc_split, xval, logg, names);

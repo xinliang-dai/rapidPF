@@ -18,7 +18,7 @@ function [x, x_stacked] = extract_results_per_region(mpc, names)
 %   See also: [run_case_file_splitter](run_case_file_splitter.md)
     opt = mpoption;
     opt.verbose = 0;
-    opt.out.all = 0;
+%     opt.out.all = 0;
     [res, flag] = runpf(mpc, opt);
     if ~flag
         error('current merged casefile is infeasible')
