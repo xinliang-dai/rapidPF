@@ -54,6 +54,8 @@ mpc_merge = run_case_file_generator(mpc_trans, mpc_dist, conn, fields_to_merge, 
 % case-file-splitter
 mpc_split = run_case_file_splitter(mpc_merge, conn, names);
 
+% mpc_split = tun_baseMVA(mpc_split, 100);
+
 % state_dimension = 'full';
 state_dimension = 'half';
 
@@ -82,7 +84,7 @@ end
 
 option              = AladinOption;
 option.problem_type = problem_type;
-option.iter_max  = 20;
+option.iter_max  = 5;
 option.tol       = 1e-6;
 option.mu0       = 1e2;
 option.rho0      = 1e1;

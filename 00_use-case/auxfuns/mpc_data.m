@@ -12,12 +12,27 @@ function mpc=mpc_data(casefile)
                             ];   
     elseif strcmp(casefile, 'test')
     % small mpc 14+30+9
-        mpc.trans  = loadcase('BaWue_Transnet');
-        mpc.dist = { loadcase('BaWue_Transnet')};
+        mpc.trans  = tun_baseMVA(loadcase('BaWue_Transnet'), 100);
+        mpc.dist = { tun_baseMVA(loadcase('BaWue_Transnet'), 100)
+                     loadcase('case33bw_modified')
+                     loadcase('case33bw_modified')
+                     loadcase('case33bw_modified')
+                     loadcase('case33bw_modified')
+                     loadcase('case33bw_modified')
+                     loadcase('case33bw_modified')};
 
         mpc.connection_array = [
                             % region 1 - region 2
                             1 2 9 69;
+                            
+                            1 3 12 1;
+                            1 4 13 1;
+                            1 5 27 1;
+                            
+                            2 6 12 1;
+                            2 7 13 1;
+                            2 8 27 1;
+                            %1 2 9 62;
                             % region 1 - region 3
                             % region 2 - region 3
                             ];   
@@ -52,6 +67,19 @@ function mpc=mpc_data(casefile)
         %                     1 3 3 2;
                            2 3 10 100; 
                            2 3 32 70;
+                           ];
+                       
+    elseif strcmp(casefile, '118X2')
+    % 3x118
+        mpc.trans  = loadcase('case118');
+        mpc.dist = { loadcase('case118')
+                  
+                    };
+        % 
+        mpc.connection_array = [2 1 1 8;
+        %                     1 2 6 13;
+        %                     1 3 3 2;
+                          
                            ];
 
 % infeasible example
