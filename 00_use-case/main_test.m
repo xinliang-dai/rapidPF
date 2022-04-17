@@ -17,7 +17,7 @@ addpath(genpath('../04_aladin/'));
 [options, app] = plot_options;
 casefile       = options.casefile;
 %%
-gsk            = 0;options.gsk;      % generation shift key
+gsk            = options.gsk;      % generation shift key
 problem_type   = options.problem_type;
 algorithm      = options.algorithm;
 solver         = options.solver;
@@ -30,10 +30,10 @@ solver         = options.solver;
 % solver         = 'fmincon';
 
 % setup
-gsk = 0;
+% gsk = 0;
 names                = generate_name_struct();
 matpower_casefile    = mpc_data(casefile);
-decreased_region     =1;
+decreased_region     = 1;
 [mpc_trans,mpc_dist] = gen_shift_key(matpower_casefile, decreased_region, gsk); % P = P * 0.2
 fields_to_merge      = matpower_casefile.fields_to_merge;
 connection_array     = matpower_casefile.connection_array;
@@ -53,8 +53,8 @@ mpc_merge = run_case_file_generator(mpc_trans, mpc_dist, conn, fields_to_merge, 
 % case-file-splitter
 mpc_split = run_case_file_splitter(mpc_merge, conn, names);
 % choose problem dimension
-state_dimension = 'full';
-% state_dimension = 'half';
+% state_dimension = 'full';
+state_dimension = 'half';
 
 % generate distributed problem
 problem = generate_distributed_problem_for_aladin(mpc_split, names, problem_type, state_dimension);
@@ -81,10 +81,10 @@ end
 
 option              = AladinOption;
 option.problem_type = problem_type;
-option.iter_max  = 2;
+option.iter_max  = 10;
 option.tol       = 1e-8;
 option.mu0       = 1e2;
-option.rho0      = 1e0;
+option.rho0      = 1e1;
 option.nlp       = NLPoption;
 % option.nlp.solver = 'mldivide'; %solver;
 % option.nlp.solver = 'cg_steihaug';
@@ -96,8 +96,8 @@ option.qp        = QPoption;
 option.qp.regularization_hess = false;
 % option.qp.solver = 'lsqlin';
 % option.qp.solver = 'lsqminnorm';
-% option.qp.solver = 'mldivide';
-option.nlp.solver = 'casadi';
+option.qp.solver = 'mldivide';
+% option.nlp.solver = 'casadi';
 % option.qp.solver = 'MA57';
 % option.qp.solver = 'cg_steihaug';
 % option.qp.solver = 'lu';

@@ -12,14 +12,35 @@ function mpc=mpc_data(casefile)
                             ];   
     
     
-    elseif strcmp(casefile, 'test') 
-        
-        
-        mpc.trans  = ext2int(loadcase('BaWue_Transnet'));
-        mpc.dist = { ext2int(loadcase('BaWue_Transnet'))
-                    };
+    elseif strcmp(casefile, 'test')
+    % 2xBW + 8x33
+        mpc.trans  = tun_baseMVA(loadcase('BaWue_Transnet'), 100);
+        mpc.dist = { tun_baseMVA(loadcase('BaWue_Transnet'), 100)
+                     loadcase('case33bw_modified')
+                     loadcase('case33bw_modified')
+                     loadcase('case33bw_modified')
+                     loadcase('case33bw_modified')
+                     loadcase('case33bw_modified')
+                     loadcase('case33bw_modified')
+                     loadcase('case33bw_modified')
+                     loadcase('case33bw_modified')};
 
-    mpc.connection_array = [1 2 9 9];
+        mpc.connection_array = [
+                            % region BW1 - region BW2
+                            1 2 9 69;
+                            
+                            % region BW1 - case33
+                            1 3 12 1;
+                            1 4 13 1;
+                            1 5 27 1;
+                            1 6 62 1;
+                            
+                            % region BW2 - case33
+                            2 7 12 1;
+                            2 8 13 1;
+                            2 9 27 1;
+                            2 10 62 1;
+                            ];   
         
         
         
