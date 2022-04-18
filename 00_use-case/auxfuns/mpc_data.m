@@ -13,9 +13,35 @@ function mpc=mpc_data(casefile)
     
     
     elseif strcmp(casefile, 'test')
-    % 2xBW + 8x33
+    % 3xBW + 30x33
         mpc.trans  = tun_baseMVA(loadcase('BaWue_Transnet'), 100);
         mpc.dist = { tun_baseMVA(loadcase('BaWue_Transnet'), 100)
+                     tun_baseMVA(loadcase('BaWue_Transnet'), 100)
+                    
+                     tun_baseMVA(loadcase('case33bw'), 100)
+                     tun_baseMVA(loadcase('case33bw'), 100)
+                     tun_baseMVA(loadcase('case33bw'), 100)
+                     tun_baseMVA(loadcase('case33bw'), 100)
+                     tun_baseMVA(loadcase('case33bw'), 100)
+                     tun_baseMVA(loadcase('case33bw'), 100)
+                     tun_baseMVA(loadcase('case33bw'), 100)
+                     tun_baseMVA(loadcase('case33bw'), 100)
+                     tun_baseMVA(loadcase('case33bw'), 100)
+                     tun_baseMVA(loadcase('case33bw'), 100)
+                     
+                     tun_baseMVA(loadcase('case33bw'), 100)
+                     tun_baseMVA(loadcase('case33bw'), 100)
+                     tun_baseMVA(loadcase('case33bw'), 100)
+                     tun_baseMVA(loadcase('case33bw'), 100)
+                     tun_baseMVA(loadcase('case33bw'), 100)
+                     tun_baseMVA(loadcase('case33bw'), 100)
+                     tun_baseMVA(loadcase('case33bw'), 100)
+                     tun_baseMVA(loadcase('case33bw'), 100)
+                     tun_baseMVA(loadcase('case33bw'), 100)
+                     tun_baseMVA(loadcase('case33bw'), 100)
+                     
+                     tun_baseMVA(loadcase('case33bw'), 100)
+                     tun_baseMVA(loadcase('case33bw'), 100)
                      tun_baseMVA(loadcase('case33bw'), 100)
                      tun_baseMVA(loadcase('case33bw'), 100)
                      tun_baseMVA(loadcase('case33bw'), 100)
@@ -26,20 +52,46 @@ function mpc=mpc_data(casefile)
                      tun_baseMVA(loadcase('case33bw'), 100)};
 
         mpc.connection_array = [
-                            % region BW1 - region BW2
-                            1 2 9 69;
+                            % region BW1 - region BW2 - region BW3
+                            1 2 4 9;
+                            2 3 4 9;
+                            3 1 4 9;
                             
-                            % region BW1 - case33
-                            1 3 12 1;
-                            1 4 13 1;
-                            1 5 27 1;
-                            1 6 62 1;
+                            % region BW1 - 10xcase33
+                            1 4 5 1;
+                            1 5 8 1;
+                            1 6 10 1;
+                            1 7 11 1;
+                            1 8 12 1;
+                            1 9 13 1;
+                            1 10 23 1;
+                            1 11 26 1;
+                            1 12 27 1;
+                            1 13 62 1;
                             
-                            % region BW2 - case33
-                            2 7 12 1;
-                            2 8 13 1;
-                            2 9 27 1;
-                            2 10 62 1;
+                            % region BW2 - 10xcase33
+                            1 14 5 1;
+                            1 15 8 1;
+                            1 16 10 1;
+                            1 17 11 1;
+                            1 18 12 1;
+                            1 19 13 1;
+                            1 20 23 1;
+                            1 21 26 1;
+                            1 22 27 1;
+                            1 23 62 1;
+                            
+                            % region BW3 - 10xcase33
+                            1 24 5 1;
+                            1 25 8 1;
+                            1 26 10 1;
+                            1 27 11 1;
+                            1 28 12 1;
+                            1 29 13 1;
+                            1 30 23 1;
+                            1 31 26 1;
+                            1 32 27 1;
+                            1 33 62 1;
                             ];   
         
         
