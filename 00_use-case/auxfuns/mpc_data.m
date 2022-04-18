@@ -16,14 +16,14 @@ function mpc=mpc_data(casefile)
     % 2xBW + 8x33
         mpc.trans  = tun_baseMVA(loadcase('BaWue_Transnet'), 100);
         mpc.dist = { tun_baseMVA(loadcase('BaWue_Transnet'), 100)
-                     loadcase('case33bw_modified')
-                     loadcase('case33bw_modified')
-                     loadcase('case33bw_modified')
-                     loadcase('case33bw_modified')
-                     loadcase('case33bw_modified')
-                     loadcase('case33bw_modified')
-                     loadcase('case33bw_modified')
-                     loadcase('case33bw_modified')};
+                     tun_baseMVA(loadcase('case33bw'), 100)
+                     tun_baseMVA(loadcase('case33bw'), 100)
+                     tun_baseMVA(loadcase('case33bw'), 100)
+                     tun_baseMVA(loadcase('case33bw'), 100)
+                     tun_baseMVA(loadcase('case33bw'), 100)
+                     tun_baseMVA(loadcase('case33bw'), 100)
+                     tun_baseMVA(loadcase('case33bw'), 100)
+                     tun_baseMVA(loadcase('case33bw'), 100)};
 
         mpc.connection_array = [
                             % region BW1 - region BW2
