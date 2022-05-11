@@ -226,7 +226,7 @@ function mpc = replace_slack_and_generators(mpc, trafo_buses)
             % slack bus and transformer bus DO NOT coincide
             warning('The slack bus and the transformer bus DO NOT coincide. Check results carefully.');
             % then, replace transformer bus by PQ bus, I.e. pure load bus
-            mpc = replace_generator(mpc, trafo_bus, 'pq');
+%             mpc = replace_generator(mpc, trafo_bus, 'pq');
             % and, replace slack bus by PV bus, gen still working
             if ~replaced_slack
                 mpc = replace_slack(mpc, 'pv');
