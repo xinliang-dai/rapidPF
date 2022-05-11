@@ -13,6 +13,8 @@ addpath(genpath('../01_generator/'));
 addpath(genpath('../02_splitter/'));
 addpath(genpath('../03_parser/'));
 addpath(genpath('../04_aladin/'));
+%% partition test
+mpc_partition = run_case_file_partition();
 %% plot option
 [options, app] = plot_options;
 casefile       = options.casefile;
