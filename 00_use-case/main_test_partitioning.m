@@ -15,16 +15,9 @@ addpath(genpath('../03_parser/'));
 addpath(genpath('../04_aladin/'));
 %% partition test
 mpc_partition = run_case_file_partition();
-%% plot option
-% [options, app] = plot_options;
-% casefile       = options.casefile;
-% %%
-% gsk            = 0;options.gsk;      % generation shift key
-% problem_type   = options.problem_type;
-% algorithm      = options.algorithm;
-% solver         = options.solver;
-casefile       = '53-I';
-gsk            = 0;
+
+% casefile       = '53-I';
+ gsk            = 0;
 problem_type   = 'least-squares';
 algorithm      = 'aladin';
 solver         = 'casadi';  
@@ -38,18 +31,19 @@ solver         = 'casadi';
 % setup
 gsk = 0;
 names                = generate_name_struct();
-matpower_casefile    = mpc_data(casefile);
-decreased_region     =1;
+% matpower_casefile    = mpc_data(casefile);
+matpower_casefile    = collect_partitioning_data(mpc_partition);
+decreased_region     = 1;
 [mpc_trans,mpc_dist] = gen_shift_key(matpower_casefile, decreased_region, gsk); % P = P * 0.2
 fields_to_merge      = matpower_casefile.fields_to_merge;
 connection_array     = matpower_casefile.connection_array;
-
-
-trafo_params.r = 0;
-trafo_params.x = 0.00623;
-trafo_params.b = 0;
-trafo_params.ratio = 0.985;
-trafo_params.angle = 0;
+trafo_params         = mpc_partition.trafo_params;
+% 
+% trafo_params.r = 0;
+% trafo_params.x = 0.00623;
+% trafo_params.b = 0;
+% trafo_params.ratio = 0.985;
+% trafo_params.angle = 0;
 
 conn = build_connection_table(connection_array, trafo_params);
 Nconnections = height(conn);
@@ -59,8 +53,8 @@ mpc_merge = run_case_file_generator(mpc_trans, mpc_dist, conn, fields_to_merge, 
 % case-file-splitter
 mpc_split = run_case_file_splitter(mpc_merge, conn, names);
 % choose problem dimension
-state_dimension = 'full';
-% state_dimension = 'half';
+% state_dimension = 'full';
+state_dimension = 'half';
 
 % generate distributed problem
 problem = generate_distributed_problem_for_aladin(mpc_split, names, problem_type, state_dimension);

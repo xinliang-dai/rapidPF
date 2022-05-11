@@ -27,16 +27,19 @@ function mpc = add_copy_nodes(mpc, tab, names)
         to_sys = tab.to_sys(i);
         from_bus = tab.from_bus(i);
         to_bus = tab.to_bus(i);
-        
-        copy_buses_global{from_sys} = assign_global_entry(copy_buses_global{from_sys}, to_bus, to_sys, N_buses);
-        copy_buses_global{to_sys} = assign_global_entry(copy_buses_global{to_sys}, from_bus, from_sys, N_buses);
-        
-        copy_buses_local{from_sys} = assign_local_entry(copy_buses_local{from_sys}, N_buses(from_sys));
-        copy_buses_local{to_sys} = assign_local_entry(copy_buses_local{to_sys}, N_buses(to_sys));
+        if ~ismember(from_bus,copy_buses_global{to_sys})
+            copy_buses_global{to_sys} = assign_global_entry(copy_buses_global{to_sys}, from_bus, from_sys, N_buses);
+            copy_buses_local{to_sys} = assign_local_entry(copy_buses_local{to_sys}, N_buses(to_sys));
+        end
+        if ~ismember(to_bus,copy_buses_global{from_sys})
+%         ismember(from_bus,copy_buses_global{to_sys})
+            copy_buses_global{from_sys} = assign_global_entry(copy_buses_global{from_sys}, to_bus, to_sys, N_buses);
+            copy_buses_local{from_sys} = assign_local_entry(copy_buses_local{from_sys}, N_buses(from_sys));
+        end
     end
     
-    check_size(copy_buses_global, mpc, tab, names)
-    check_size(copy_buses_local, mpc, tab, names)
+%     check_size(copy_buses_global, mpc, tab, names)
+%     check_size(copy_buses_local, mpc, tab, names)
     
     for i = 1:N_systems
         copy_buses_global{i} = sort(copy_buses_global{i});
