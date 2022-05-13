@@ -5,9 +5,7 @@ import pypower.api as pp
 import numpy as np
 import scipy.io as sio
 
-from scipy.sparse import csr_matrix
 from pypower.idx_brch import F_BUS, T_BUS
-from pypower.idx_bus import BUS_AREA
 from mpc_to_ppc import mpc_to_ppc
 
 
@@ -18,29 +16,30 @@ def partition(ppc_case, n_blocks):
     # get bus and branch matrix
     ppc = pp.ext2int(ppc_case)
     bus, branch = ppc["bus"], ppc["branch"]
+
     # get relevant variables
     n_bus = bus.shape[0]
     n_edge = branch.shape[0]
     n_conn = n_edge * 2
 
     # get form bus and to bus array
-    from_arr = branch[:, F_BUS].astype(int)
-    to_arr = branch[:, T_BUS].astype(int)
+    from_bus = branch[:, F_BUS].astype(int)
+    to_bus = branch[:, T_BUS].astype(int)
 
-    data = np.ones((n_edge,))
+    # bi-directed
+    from_arr = np.hstack((from_bus, to_bus))
+    to_arr = np.hstack((to_bus, from_bus))
 
-    # create connection matrix
-    conn_mat = csr_matrix((data, (from_arr, to_arr)), shape=(n_edge, n_edge))
-
-    # bi directed
-    conn_mat = conn_mat + conn_mat.T
+    # reorder according to from bus and then to bus
+    id_arr = np.lexsort((to_arr, from_arr))
+    from_arr = from_arr[id_arr]
+    to_arr = to_arr[id_arr]
 
     # get adjacency array
-    adjncy = conn_mat.indices.tolist()
+    adjncy = to_arr.tolist()
 
     # get xadj array
-    total_arr = np.hstack((from_arr, to_arr))
-    mem = np.bincount(total_arr)
+    mem = np.bincount(from_arr)
     xadj = np.cumsum(mem)
     xadj = np.insert(xadj, [0], [0]).tolist()
 
@@ -69,13 +68,14 @@ def partition(ppc_case, n_blocks):
                                    supress_output, seed, mode)
 
     print(edgecut)
+    blocks = np.array(blocks) + 1
     print(blocks)
 
     # add info to bus matrix
-    ppc_case["bus"][:, BUS_AREA] = blocks
-    ppc_case["edgecut"] = edgecut
-    ppc_case["regions"] = n_blocks
-    return ppc_case
+    # ppc_case["bus"][:, BUS_AREA] = blocks
+    # ppc_case["edgecut"] = edgecut
+    # ppc_case["regions"] = n_blocks
+    return edgecut, blocks
 
 
 # load case
@@ -85,14 +85,16 @@ def partition(ppc_case, n_blocks):
 # or read from .mat file
 mpc = 'mpc.mat'
 mpc = sio.loadmat(mpc)
-ppc_case = mpc_to_ppc(mpc)
+ppc = mpc_to_ppc(mpc)
 
+# ppc = pp.case14()
 # partition
-ppc_case = partition(ppc_case, 3)
+edge_cut, areas = partition(ppc, 3)
+partition_result = {"edge_cut": edge_cut, "area": areas}
 
 # print result
 # print(ppc_case["bus"][:, BUS_AREA])
 # print(ppc_case)
 
 # save the result
-sio.savemat("ppc_partition.mat", ppc_case)
+sio.savemat("ppc_partition.mat", partition_result)

@@ -1,4 +1,4 @@
-function mpc_out = run_case_file_partition()
+function mpc_out = run_case_file_partition(mpc)
 
     %% define named indices into bus, branch matrices
     [PQ, PV, REF, NONE, BUS_I, BUS_TYPE, PD, QD, GS, BS, BUS_AREA, VM, ...
@@ -8,17 +8,20 @@ function mpc_out = run_case_file_partition()
         ANGMIN, ANGMAX, MU_ANGMIN, MU_ANGMAX] = idx_brch;
     %% load partitioning result 
     filename = 'ppc_partition.mat';
-    myVars = {'baseMVA','branch','bus','edgecut', 'gen', 'gencost', 'regions', 'version'};
-    mpc = load(filename,myVars{:});
+    myVars = {'area','edge_cut'};
+    edgecut_info = load(filename,myVars{:});
     %% splitting the casefile
     % get values of some variances
-    n_regions = mpc.regions;  % num of regions
-    n_edgecut = mpc.edgecut;  % num of edge cuts
+    % n_regions = edgecut_info.area;  % num of regions
+    n_regions = 3;
+    areas = edgecut_info.area;  % num of edge cuts
+    n_edgecut = edgecut_info.edge_cut;
     mpc_partitions = cell(n_regions, 1);  % save partition info
     conn = zeros(n_edgecut, 9);  % save connection info
 
     id_conn = 1;  % initialize index 
-
+    
+    mpc.bus(:, BUS_AREA) = areas;
     for i = 1:n_regions
         fprintf('\nCreate sub system #%i\n', i);
         % create sub mpc case in cell i
@@ -29,7 +32,7 @@ function mpc_out = run_case_file_partition()
         % baseMVA
         mpc_partitions{i}.baseMVA = mpc.baseMVA;
         % bus
-        id_buses = find(mpc.bus(:, BUS_AREA) == i - 1);  %% indices of buses in region i
+        id_buses = find(mpc.bus(:, BUS_AREA) == i);  %% indices of buses in region i
         mpc_partitions{i}.bus = mpc.bus(id_buses, :);
         % branch 
         id_branches = find(ismember(mpc.branch(:, F_BUS), id_buses)); %% indices of branches in region i
@@ -48,7 +51,7 @@ function mpc_out = run_case_file_partition()
         id_bus_cut_reg = mpc.bus(to_bus_cut_i, BUS_AREA); % get to_region
 
         conn(id_conn_i, 1) = i;                            % save from region
-        conn(id_conn_i, 2) = id_bus_cut_reg + 1;           % save to region
+        conn(id_conn_i, 2) = id_bus_cut_reg;               % save to region
         conn(id_conn_i, 3) = branches_i(id_br_cut, F_BUS); % save from bus
         conn(id_conn_i, 4) = branches_i(id_br_cut, T_BUS); % save to bus
         conn(id_conn_i, 5) = branches_i(id_br_cut, BR_R);  % save BR_R

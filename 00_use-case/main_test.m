@@ -14,7 +14,9 @@ addpath(genpath('../02_splitter/'));
 addpath(genpath('../03_parser/'));
 addpath(genpath('../04_aladin/'));
 %% partition test
-mpc_partition = run_case_file_partition();
+test_case = loadcase('case57');
+save('mpc.mat','-struct','test_case');
+mpc_partition = run_case_file_partition(test_case);
 %% plot option
 [options, app] = plot_options;
 casefile       = options.casefile;
