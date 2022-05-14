@@ -21,6 +21,7 @@ function mpc_out = run_case_file_partition(case_name, n_areas)
     %% add areas info to mpc data file 
     mpc.bus(:, BUS_AREA) = areas_info(3:end);
     %% splitting the casefile
+
     % initilization
     mpc_partitions = cell(n_areas, 1);  % save partition info
     conn = zeros(n_edgecut, 9);  % save connection info
@@ -29,6 +30,7 @@ function mpc_out = run_case_file_partition(case_name, n_areas)
     
     % split according to areas
     for i = 1:n_areas
+
         fprintf('\nCreate sub system #%i\n', i);
         % create sub mpc case in cell i
         % version
@@ -40,20 +42,29 @@ function mpc_out = run_case_file_partition(case_name, n_areas)
         % bus
         id_buses = find(mpc.bus(:, BUS_AREA) == i);  %% indices of buses in region i
         mpc_partitions{i}.bus = mpc.bus(id_buses, :);
+
         % branch 
         id_branches = find(ismember(mpc.branch(:, F_BUS), id_buses)); %% indices of branches in region i
-        branches_i = mpc.branch(id_branches, :);
+        branches_data = mpc.branch(id_branches, :);
         id_br_in = ismember(mpc.branch(id_branches, T_BUS), id_buses);  %% indices of branches inside the region
         id_br_cut = find(~ismember(mpc.branch(id_branches, T_BUS), id_buses)); %% branches as edgecut
-
+        % gen
+        id_gens = find(ismember(mpc.gen(:, 1), id_buses)); %% indices of gen in region i
+%         mpc_partitions{i}.gen = mpc.gen(id_gens, :);
+        
         % save branches inside the region 
-        mpc_partitions{i}.branch = branches_i(id_br_in, :); 
-
+%         mpc_partitions{i}.branch = branches_data(id_br_in, :); 
+        [mpc_partitions{i}.i2e, mpc_partitions{i}.bus, mpc_partitions{i}.gen, mpc_partitions{i}.branch] =...
+            ext2int(mpc.bus(id_buses, :), mpc.gen(id_gens, :), branches_data(id_br_in, :));
+        % add reference bus if there is not slack bus
+        if ~ismember(REF, mpc_partitions{i}.bus(:,BUS_TYPE))
+            mpc_partitions{i}.bus(1,BUS_TYPE) = REF;
+        end
         % save info in connections
         n_br_cut = numel(id_br_cut); % num of conncections in region i
         id_conn_i = linspace(id_conn, id_conn + n_br_cut - 1, n_br_cut)'; % ids in connection
 
-        to_bus_cut_i = branches_i(id_br_cut, T_BUS); % all to_bus of branch cut
+        to_bus_cut_i = branches_data(id_br_cut, T_BUS); % all to_bus of branch cut
         id_bus_cut_reg = mpc.bus(to_bus_cut_i, BUS_AREA); % get to_region
 
         conn(id_conn_i, 1) = i;                            % save from region
@@ -65,18 +76,28 @@ function mpc_out = run_case_file_partition(case_name, n_areas)
         conn(id_conn_i, 7) = branches_i(id_br_cut, BR_B);  % save BR_B
         conn(id_conn_i, 8) = branches_i(id_br_cut, TAP);   % save TAP
         conn(id_conn_i, 9) = branches_i(id_br_cut, SHIFT); % save SHIFT
-        id_conn = id_conn + n_br_cut;  % update index
 
-        % gen
-        id_gens = find(ismember(mpc.gen(:, 1), id_buses)); %% indices of gen in region i
-        mpc_partitions{i}.gen = mpc.gen(id_gens, :);
+        id_conn = id_conn + n_br_cut;  % update index
     end
-    
+    conn_local = conn_global;
+    % change connection info from global to local
+    for i = 1:size(conn_global,1)
+        from_region  = conn_global(i,1);
+        to_region    = conn_global(i,2);
+        conn_local(i,3) = find(conn_global(i,3)==mpc_partitions{from_region}.i2e);
+        conn_local(i,4) = find(conn_global(i,4)==mpc_partitions{to_region}.i2e);
+        tranfo_params{i}.r = conn_global(i,5);
+        tranfo_params{i}.x = conn_global(i,6);
+        tranfo_params{i}.b = conn_global(i,7);
+        tranfo_params{i}.ratio = conn_global(i,8);
+        tranfo_params{i}.angle = conn_global(i,9);
+    end
     % build conn table
-    tab = build_conn_table(conn, n_edgecut);
+%     tab = build_conn_table(conn_global, n_edgecut);
     
     mpc_out.part_info = mpc_partitions;
-    mpc_out.table = tab;
+    mpc_out.conn_local = conn_local;
+    mpc_out.trafo_params = tranfo_params;
     mpc_out.origin = mpc;
 
 end

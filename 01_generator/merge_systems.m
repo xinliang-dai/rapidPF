@@ -28,7 +28,7 @@ function mpc = merge_systems(mpc_master, mpc_slave, pars, names)
     %% pre-processing: run several sanity checks
     pre_processing(mpc_master, mpc_slave, trafo_master_bus, trafo_slave_bus, fields_to_merge);
     %% main part
-    mpc_slave = replace_slack_and_generators(mpc_slave, trafo_slave_bus);
+    mpc_slave = replace_slack_bus(mpc_slave);
     mpc = merge_numbering_and_stack(mpc_master, mpc_slave, fields_to_merge);
     mpc = add_region_information(mpc, Nbus_trans, params_slave.Nbus, names);
     mpc = add_edge_information(mpc, trafo_master_bus, trafo_slave_bus, NAME_FOR_CONNECTIONS_GLOBAL_FIELD);
@@ -204,40 +204,30 @@ function mpc = replace_generator(mpc, bus, replace_by)
     end
 end
 
-function mpc = replace_slack_and_generators(mpc, trafo_buses)
+function mpc = replace_slack_bus(mpc)
+    % using index instead of number
+    [PQ, PV, REF, NONE, BUS_I, BUS_TYPE, PD, QD, GS, BS, BUS_AREA, VM, ...
+        VA, BASE_KV, ZONE, VMAX, VMIN, LAM_P, LAM_Q, MU_VMAX, MU_VMIN] = idx_bus; 
+    [GEN_BUS, PG, QG, QMAX, QMIN, VG, MBASE, GEN_STATUS, PMAX, PMIN, ...
+    MU_PMAX, MU_PMIN, MU_QMAX, MU_QMIN, PC1, PC2, QC1MIN, QC1MAX, ...
+    QC2MIN, QC2MAX, RAMP_AGC, RAMP_10, RAMP_30, RAMP_Q, APF] = idx_gen;
     slack_bus = find_slack_bus(mpc);   % ref
-    % does any trafo_bus correspond to the slack bus?
-    trafo_slack_bus = trafo_buses(trafo_buses == slack_bus);
-    trafo_buses = [ trafo_slack_bus;
-                    setdiff(trafo_buses, trafo_slack_bus) ];
-    
-    replaced_slack = false;
-    for i = 1:numel(trafo_buses)
-        trafo_bus = trafo_buses(i);
-        if trafo_bus == slack_bus        
-            % slack bus and transformer bus coincide
-            % hence, replace this generation bus by PQ bus
-            warning('The slack bus and the transformer bus coincide.');
-            if ~replaced_slack
-                mpc = replace_slack(mpc, 'pq'); % replace generator  
-                replaced_slack = true;
-            end
-        else
-            % slack bus and transformer bus DO NOT coincide
-            warning('The slack bus and the transformer bus DO NOT coincide. Check results carefully.');
-            % then, replace transformer bus by PQ bus, I.e. pure load bus
-            mpc = replace_generator(mpc, trafo_bus, 'pq');
-            % and, replace slack bus by PV bus, gen still working
-            if ~replaced_slack
-                mpc = replace_slack(mpc, 'pv');
-                replaced_slack = true;
-            end
-        end
+    gen_bus   = mpc.gen(:,GEN_BUS);
+    % does any generators connected to the slack bus?
+    if gen_bus == slack_bus        
+        % slack bus and transformer bus coincide
+        % hence, replace this generation bus by PV bus
+        warning('The slack bus and the gen bus coincide.');
+        mpc.bus(slack_bus,BUS_TYPE) = PV;
+    else
+        % slack bus and transformer bus DO NOT coincide
+        warning('The slack bus and the gen bus DO NOT coincide. Check results carefully.');
+        mpc.bus(slack_bus,BUS_TYPE) = PQ;
     end
 end
 
-function mpc = replace_slack(mpc, replace_by)
+function mpc = change_bus_type(mpc, replace_by)
     slack_bus = find_slack_bus(mpc);
-    mpc = replace_generator(mpc, slack_bus, replace_by);
+%     mpc = replace_generator(mpc, slack_bus, replace_by);
 end
 

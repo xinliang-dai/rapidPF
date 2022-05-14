@@ -5,5 +5,5 @@ function check_connection(mpc, bus, sys)
 % mpc: current casefile
 % bus: bus number for connection in mpc
 % sys: system name
-    assert(is_generator(mpc, bus), 'post_processing:check_connection', '[%s system] Transformer would be connected to a non-generation bus.', sys)
+%     warning(is_generator(mpc, bus), 'post_processing:check_connection', '[%s system] Transformer would be connected to a non-generation bus.', sys)
 end
