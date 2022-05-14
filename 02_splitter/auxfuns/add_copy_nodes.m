@@ -23,7 +23,6 @@ function mpc = add_copy_nodes(mpc, tab, names)
     
     [copy_buses_global, copy_buses_local] = deal(cell(N_systems, 1));
     for i = 1:N_connections
-        i
         from_sys = tab.from_sys(i);
         to_sys = tab.to_sys(i);
         from_bus = tab.from_bus(i);
