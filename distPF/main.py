@@ -1,6 +1,7 @@
 import sys
-sys.path.append("/home/xinliang/Research/KaHIP-master/deploy")
+sys.path.append("/home/cyc/Downloads/KaHIP-master/deploy")
 import kahip
+import csv
 import pypower.api as pp
 import numpy as np
 import scipy.io as sio
@@ -78,23 +79,44 @@ def partition(ppc_case, n_blocks):
     return edgecut, blocks
 
 
-# load case
-# ppc_case = pp.case14()
-# ppc = pp.ext2int(ppc)
+# load case using pypower
+# ppc = pp.case14()
+
+# set number of areas to split and case name
+# n_split = 3
+# case = 'case57'
+# case = 'case118'
+# case = 'case300'
+# case = 'case_ACTIVSg500'
+# case = 'case1354pegase'
+# case = 'case2383wp'
+# case = 'case3375wp'
+case = 'case13659pegase'
 
 # or read from .mat file
-mpc = 'mpc.mat'
+mpc = 'matcase/' + case + '.mat'
 mpc = sio.loadmat(mpc)
 ppc = mpc_to_ppc(mpc)
 
-# ppc = pp.case14()
-# partition
-edge_cut, areas = partition(ppc, 3)
-partition_result = {"edge_cut": edge_cut, "area": areas}
+# for i in range(2, 10):
+for i in range(10, 102, 10):
+    n_split = i
 
-# print result
-# print(ppc_case["bus"][:, BUS_AREA])
-# print(ppc_case)
+    # partition
+    edge_cut, areas = partition(ppc, n_split)
+    # partition_result = {"edge_cut": edge_cut, "area": areas}
 
-# save the result
-sio.savemat("ppc_partition.mat", partition_result)
+    # insert number of areas and edge cuts to the result
+    result = areas
+    result = np.insert(result, 0, edge_cut)
+    result = np.insert(result, 0, n_split)
+
+    # save the result
+    # sio.savemat("ppc_partition.mat", partition_result)
+
+    # write the result to .csv file
+    with open("results/" + case + "_" + str(n_split) + ".csv", "w") as csvfile:
+        writer = csv.writer(csvfile)
+
+        # write
+        writer.writerow(result)

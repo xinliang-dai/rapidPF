@@ -1,4 +1,4 @@
-function mpc_out = run_case_file_partition(mpc)
+function mpc_out = run_case_file_partition(case_name, n_areas)
 
     %% define named indices into bus, branch matrices
     [PQ, PV, REF, NONE, BUS_I, BUS_TYPE, PD, QD, GS, BS, BUS_AREA, VM, ...
@@ -6,23 +6,29 @@ function mpc_out = run_case_file_partition(mpc)
     [F_BUS, T_BUS, BR_R, BR_X, BR_B, RATE_A, RATE_B, RATE_C, ...
         TAP, SHIFT, BR_STATUS, PF, QF, PT, QT, MU_SF, MU_ST, ...
         ANGMIN, ANGMAX, MU_ANGMIN, MU_ANGMAX] = idx_brch;
+    %% load mpc_case
+    mpc = loadcase(case_name);
+    mpc = ext2int(mpc);
     %% load partitioning result 
-    filename = 'ppc_partition.mat';
-    myVars = {'area','edge_cut'};
-    edgecut_info = load(filename,myVars{:});
+    % filename = 'ppc_partition.mat';
+    % myVars = {'area','edge_cut'};
+    % edgecut_info = load(filename,myVars{:});
+    str_n_areas =  num2str(n_areas);
+    filename = strcat('results/', case_name, '_', str_n_areas, '.csv');
+    areas_info = importdata(filename);
+    %% get num of edge cut
+    n_edgecut = areas_info(2);
+    %% add areas info to mpc data file 
+    mpc.bus(:, BUS_AREA) = areas_info(3:end);
     %% splitting the casefile
-    % get values of some variances
-    % n_regions = edgecut_info.area;  % num of regions
-    n_regions = 3;
-    areas = edgecut_info.area;  % num of edge cuts
-    n_edgecut = edgecut_info.edge_cut;
-    mpc_partitions = cell(n_regions, 1);  % save partition info
+    % initilization
+    mpc_partitions = cell(n_areas, 1);  % save partition info
     conn = zeros(n_edgecut, 9);  % save connection info
 
     id_conn = 1;  % initialize index 
     
-    mpc.bus(:, BUS_AREA) = areas;
-    for i = 1:n_regions
+    % split according to areas
+    for i = 1:n_areas
         fprintf('\nCreate sub system #%i\n', i);
         % create sub mpc case in cell i
         % version
