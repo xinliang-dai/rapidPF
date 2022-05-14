@@ -14,7 +14,17 @@ addpath(genpath('../02_splitter/'));
 addpath(genpath('../03_parser/'));
 addpath(genpath('../04_aladin/'));
 %% partition test
-mpc_partition = run_case_file_partition();
+% save .mat file
+case_mpc = 'case57'; % 2-5
+% case_mpc = 'case118'; % 2-10
+% case_mpc = 'case300'; % 2-10 10-20(/2)
+% case_mpc = 'case1354pegase'; % 2-10 10-20(/2)
+% case_mpc = 'case2383wp'; % 2-10 10-100(/10)
+% case_mpc = 'case3375wp'; % 2-10 10-100(/10)
+% case_mpc = 'case13659pegase'; % 2-10 10-100(/10)
+n_split  = 3;
+
+mpc_partition = run_case_file_partition(case_mpc, n_split);
 
 % casefile       = '53-I';
  gsk            = 0;
@@ -41,7 +51,7 @@ trafo_params         = mpc_partition.trafo_params;
 % 
 % trafo_params.r = 0;
 % trafo_params.x = 0.00623;
-% trafo_params.b = 0;
+% trafo_params.b = 0
 % trafo_params.ratio = 0.985;
 % trafo_params.angle = 0;
 

@@ -23,27 +23,32 @@ function mpc = add_copy_nodes(mpc, tab, names)
     
     [copy_buses_global, copy_buses_local] = deal(cell(N_systems, 1));
     for i = 1:N_connections
+        i
         from_sys = tab.from_sys(i);
         to_sys = tab.to_sys(i);
         from_bus = tab.from_bus(i);
         to_bus = tab.to_bus(i);
-        if ~ismember(from_bus,copy_buses_global{to_sys})
-            copy_buses_global{to_sys} = assign_global_entry(copy_buses_global{to_sys}, from_bus, from_sys, N_buses);
-            copy_buses_local{to_sys} = assign_local_entry(copy_buses_local{to_sys}, N_buses(to_sys));
-        end
-        if ~ismember(to_bus,copy_buses_global{from_sys})
+%         if ~ismember(from_bus,copy_buses_global{to_sys})
+            [copy_buses_global{to_sys}, flag] = assign_global_entry(copy_buses_global{to_sys}, from_bus, from_sys, N_buses);
+            if flag
+                copy_buses_local{to_sys} = assign_local_entry(copy_buses_local{to_sys}, N_buses(to_sys));
+            end
+%         end
+%         if ~ismember(to_bus,copy_buses_global{from_sys})
 %         ismember(from_bus,copy_buses_global{to_sys})
-            copy_buses_global{from_sys} = assign_global_entry(copy_buses_global{from_sys}, to_bus, to_sys, N_buses);
-            copy_buses_local{from_sys} = assign_local_entry(copy_buses_local{from_sys}, N_buses(from_sys));
-        end
+            [copy_buses_global{from_sys}, flag] = assign_global_entry(copy_buses_global{from_sys}, to_bus, to_sys, N_buses);
+            if flag
+                copy_buses_local{from_sys} = assign_local_entry(copy_buses_local{from_sys}, N_buses(from_sys));
+            end
+%         end
     end
     
 %     check_size(copy_buses_global, mpc, tab, names)
 %     check_size(copy_buses_local, mpc, tab, names)
     
     for i = 1:N_systems
-        copy_buses_global{i} = sort(copy_buses_global{i});
-        copy_buses_local{i} = sort(copy_buses_local{i});
+        copy_buses_global{i} =   sort(copy_buses_global{i});
+        copy_buses_local{i}  =   sort(copy_buses_local{i});
     end
     
     mpc.(names.copy_buses.global) = copy_buses_global;
@@ -68,8 +73,14 @@ function copy_nodes = get_number_of_copy_nodes(mpc, tab, names)
     end
 end
 
-function vec = assign_global_entry(vec, bus, sys, N)
-    vec = [vec; bus + sum(N(1:sys-1))];
+function [vec,success] = assign_global_entry(vec, bus, sys, N)
+    bus_global = bus + sum(N(1:sys-1));
+    if ~ismember(bus_global,vec) || isempty(vec)
+        vec = [vec; bus_global];
+        success = true;
+    else
+        success = false;
+    end
 end
 
 function vec = assign_local_entry(vec, N)

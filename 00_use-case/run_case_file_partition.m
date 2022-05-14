@@ -67,20 +67,21 @@ function mpc_out = run_case_file_partition(case_name, n_areas)
         to_bus_cut_i = branches_data(id_br_cut, T_BUS); % all to_bus of branch cut
         id_bus_cut_reg = mpc.bus(to_bus_cut_i, BUS_AREA); % get to_region
 
-        conn(id_conn_i, 1) = i;                            % save from region
-        conn(id_conn_i, 2) = id_bus_cut_reg;               % save to region
-        conn(id_conn_i, 3) = branches_i(id_br_cut, F_BUS); % save from bus
-        conn(id_conn_i, 4) = branches_i(id_br_cut, T_BUS); % save to bus
-        conn(id_conn_i, 5) = branches_i(id_br_cut, BR_R);  % save BR_R
-        conn(id_conn_i, 6) = branches_i(id_br_cut, BR_X);  % save BR_X
-        conn(id_conn_i, 7) = branches_i(id_br_cut, BR_B);  % save BR_B
-        conn(id_conn_i, 8) = branches_i(id_br_cut, TAP);   % save TAP
-        conn(id_conn_i, 9) = branches_i(id_br_cut, SHIFT); % save SHIFT
+        conn_global(id_conn_i, 1) = i;                            % save from region
+        conn_global(id_conn_i, 2) = id_bus_cut_reg;               % save to region
+        conn_global(id_conn_i, 3) = branches_data(id_br_cut, F_BUS); % save from bus
+        conn_global(id_conn_i, 4) = branches_data(id_br_cut, T_BUS); % save to bus
+        conn_global(id_conn_i, 5) = branches_data(id_br_cut, BR_R);  % save BR_R
+        conn_global(id_conn_i, 6) = branches_data(id_br_cut, BR_X);  % save BR_X
+        conn_global(id_conn_i, 7) = branches_data(id_br_cut, BR_B);  % save BR_B
+        conn_global(id_conn_i, 8) = branches_data(id_br_cut, TAP);   % save TAP
+        conn_global(id_conn_i, 9) = branches_data(id_br_cut, SHIFT); % save SHIFT
 
         id_conn = id_conn + n_br_cut;  % update index
     end
     conn_local = conn_global;
     % change connection info from global to local
+    tranfo_params = cell(size(conn_global,1),1);
     for i = 1:size(conn_global,1)
         from_region  = conn_global(i,1);
         to_region    = conn_global(i,2);

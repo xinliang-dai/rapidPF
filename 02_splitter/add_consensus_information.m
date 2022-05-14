@@ -45,7 +45,7 @@ function tab_out = add_consensus_information_core(mpc, tab_in, names)
         mpc_orig = case_files{orig_sys(i)};
         mpc_copy = case_files{copy_sys(i)};
         
-        bus_number = mpc_orig.bus(orig_bus_local(i));
+        bus_number = mpc_orig.bus(orig_bus_local(i))
         copy_bus_local(i) = find(mpc_copy.bus(:, 1) == bus_number);
     end
     tab_out = table(orig_sys, copy_sys, orig_bus_local, copy_bus_local);
