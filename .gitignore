@@ -295,7 +295,6 @@ TSWLatexianTemp*
 *.lic
 
 ## datafile
-*.csv 
 *.xml
 *.iml
 
