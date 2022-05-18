@@ -22,12 +22,12 @@ case_mpc = 'case57'; % 2-5
 % case_mpc = 'case2383wp'; % 2-10 10-100(/10)
 % case_mpc = 'case3375wp'; % 2-10 10-100(/10)
 % case_mpc = 'case13659pegase'; % 2-10 10-100(/10)
-n_split  = 3;
-
+n_split  = 4;
+% 
 mpc_partition = run_case_file_partition(case_mpc, n_split);
 
 % casefile       = '53-I';
- gsk            = 0;
+gsk            = 0;
 problem_type   = 'least-squares';
 algorithm      = 'aladin';
 solver         = 'casadi';  
@@ -60,6 +60,7 @@ Nconnections = height(conn);
 %% main
 % case-file-generator
 mpc_merge = run_case_file_generator(mpc_trans, mpc_dist, conn, fields_to_merge, names);
+% mpc_merge = runpf(mpc_merge);
 % case-file-splitter
 mpc_split = run_case_file_splitter(mpc_merge, conn, names);
 % choose problem dimension

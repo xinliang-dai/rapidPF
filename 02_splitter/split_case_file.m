@@ -51,7 +51,11 @@ function mpc_split = split_case_file(mpc, N, names)
         row = find( bus_data(:, BUS_I) == bus_number);
         bus_data_split(i, :) = bus_data(row, :);
     end
-    
+%     idx_ref = find(bus_data_split(:,BUS_TYPE) ==REF);
+%     if any(idx_ref) && ismember(idx_ref, mpc.copy_buses_local{N})
+% %         id_copy_ref = bus_data_split(idx_ref,BUS_I);
+%         bus_data_split(idx_ref, BUS_TYPE) = PV;
+%     end
     mpc_split.bus = bus_data_split;
     
     % gen entries
@@ -76,6 +80,7 @@ function mpc_split = split_case_file(mpc, N, names)
     mpc_split.(NAME_FOR_AUX_FIELD) = mpc.(NAME_FOR_AUX_FIELD){N};
     mpc_split.(NAME_FOR_AUX_BUSES_FIELD) = mpc.(NAME_FOR_AUX_BUSES_FIELD){N};
     mpc_split.(NAME_FOR_COPY_BUSES_LOCAL) = mpc.(NAME_FOR_COPY_BUSES_LOCAL){N};
+    
     
 
 %     if isfield(mpc, 'gencost')

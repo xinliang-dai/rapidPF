@@ -8,7 +8,7 @@ function mpc_out = run_case_file_partition(case_name, n_areas)
         ANGMIN, ANGMAX, MU_ANGMIN, MU_ANGMAX] = idx_brch;
     %% load mpc_case
     mpc = loadcase(case_name);
-    mpc = ext2int(mpc);
+%     mpc = ext2int(mpc);
     %% load partitioning result 
     % filename = 'ppc_partition.mat';
     % myVars = {'area','edge_cut'};
@@ -20,8 +20,17 @@ function mpc_out = run_case_file_partition(case_name, n_areas)
     n_edgecut = areas_info(2);
     %% add areas info to mpc data file 
     mpc.bus(:, BUS_AREA) = areas_info(3:end);
+    Nmax =max(BUS_AREA);
+    % find ref area
+    idx_ref = find(mpc.bus(:, BUS_TYPE) == REF);
+    region_ref = mpc.bus(idx_ref, BUS_AREA);
+    idx_master = find(mpc.bus(:, BUS_AREA)==region_ref);
+    idx_worker = find(mpc.bus(:, BUS_AREA)==1);
+    mpc.bus(idx_master,BUS_AREA) = 1;
+    mpc.bus(idx_worker,BUS_AREA) = region_ref;
     %% splitting the casefile
-
+    mpc.bus = sortrows(mpc.bus,BUS_AREA);
+    mpc = ext2int(mpc);
     % initilization
     mpc_partitions = cell(n_areas, 1);  % save partition info
     conn = zeros(n_edgecut, 9);  % save connection info
@@ -56,7 +65,7 @@ function mpc_out = run_case_file_partition(case_name, n_areas)
 %         mpc_partitions{i}.branch = branches_data(id_br_in, :); 
         [mpc_partitions{i}.i2e, mpc_partitions{i}.bus, mpc_partitions{i}.gen, mpc_partitions{i}.branch] =...
             ext2int(mpc.bus(id_buses, :), mpc.gen(id_gens, :), branches_data(id_br_in, :));
-        % add reference bus if there is not slack bus
+%         % add reference bus if there is not slack bus
         if ~ismember(REF, mpc_partitions{i}.bus(:,BUS_TYPE))
             mpc_partitions{i}.bus(1,BUS_TYPE) = REF;
         end

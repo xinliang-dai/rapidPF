@@ -85,14 +85,14 @@ function gen = remove_gen_entries(gen, bus, buses)
             QC2MIN, QC2MAX, RAMP_AGC, RAMP_10, RAMP_30, RAMP_Q, APF] = idx_gen;
     
     types = get_bus_types(bus, buses);
-    if has_slack_entry(types)
-        error('asked to remove the slack. bad idea.');
-    elseif has_pv_entry(types)
+%     if has_slack_entry(types)
+%         error('asked to remove the slack. bad idea.');
+%     elseif has_pv_entry(types)
         % there is at least one PV bus, hence remove the corresponding gen
         % entry
         inds = ismember(gen(:, GEN_BUS), buses);
         gen(inds, :) = [];
-    end
+%     end
 end
 
 function bool = has_pv_entry(types)
