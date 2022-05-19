@@ -82,6 +82,10 @@ function [A, b] = build_consensus_matrix_core(tab, number_of_buses_in_region, ki
         if kind == 'ang'
             Norig = 0;
             Ncopy = 0;
+            
+            if any(orig_bus == entries{orig_sys}.constant.ref)
+                b{orig_sys}(i, 1) = -state0_all{orig_sys}(orig_bus + Norig);
+            end
         elseif kind == 'mag'
             Norig = number_of_buses_in_region(orig_sys);
             Ncopy = number_of_buses_in_region(copy_sys);
@@ -90,6 +94,10 @@ function [A, b] = build_consensus_matrix_core(tab, number_of_buses_in_region, ki
             if any(orig_bus == entries{orig_sys}.constant.pv)
                 b{orig_sys}(i, 1) = -state0_all{orig_sys}(orig_bus + Norig);
                 is_pv = 1;
+            end
+            
+            if any(orig_bus == entries{orig_sys}.constant.ref)
+                b{orig_sys}(i, 1) = -state0_all{orig_sys}(orig_bus + Norig);
             end
         else
             error('kind %s is not supported', kind);

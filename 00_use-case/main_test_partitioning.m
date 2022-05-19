@@ -15,14 +15,14 @@ addpath(genpath('../03_parser/'));
 addpath(genpath('../04_aladin/'));
 %% partition test
 % save .mat file
-case_mpc = 'case57'; % 2-5
-% case_mpc = 'case118'; % 2-10
+% case_mpc = 'case57'; % 2-4
+case_mpc = 'case118'; % 2-10
 % case_mpc = 'case300'; % 2-10 10-20(/2)
 % case_mpc = 'case1354pegase'; % 2-10 10-20(/2)
 % case_mpc = 'case2383wp'; % 2-10 10-100(/10)
 % case_mpc = 'case3375wp'; % 2-10 10-100(/10)
 % case_mpc = 'case13659pegase'; % 2-10 10-100(/10)
-n_split  = 4;
+n_split  = 5;
 % 
 mpc_partition = run_case_file_partition(case_mpc, n_split);
 
