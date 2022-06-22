@@ -21,12 +21,12 @@ addpath(genpath('../04_aladin/'));
 % case_mpc = 'case1354pegase'; % 2-10 10-20(/2)
 % case_mpc = 'case2383wp'; % 2-10 10-100(/10)
 % case_mpc = 'case3375wp'; % 2-10 10-100(/10)
-case_mpc = 'case13659pegase'; % 2-10 10-100(/10)
+% case_mpc = 'case13659pegase'; % 2-10 10-100(/10)
 % save_mpc_data(case_mpc);
 %% partitioning test
 % partition
-n_split = 100;
-mpc_partition = run_case_file_partition(case_mpc, n_split);
+% n_split = 100;
+% mpc_partition = run_case_file_partition(case_mpc, n_split);
 %% plot option
 [options, app] = plot_options;
 casefile       = options.casefile;
@@ -67,8 +67,8 @@ mpc_merge = run_case_file_generator(mpc_trans, mpc_dist, conn, fields_to_merge, 
 % case-file-splitter
 mpc_split = run_case_file_splitter(mpc_merge, conn, names);
 % choose problem dimension
-state_dimension = 'full';
-% state_dimension = 'half';
+% state_dimension = 'full';
+state_dimension = 'half';
 
 % generate distributed problem
 problem = generate_distributed_problem_for_aladin(mpc_split, names, problem_type, state_dimension);
@@ -95,7 +95,7 @@ end
 
 option              = AladinOption;
 option.problem_type = problem_type;
-option.iter_max  = 20;
+option.iter_max  = 100;
 option.tol       = 1e-8;
 option.mu0       = 1e2;
 option.rho0      = 1e2;
@@ -110,19 +110,19 @@ option.qp        = QPoption;
 option.qp.regularization_hess = false;
 % option.qp.solver = 'lsqlin';
 % option.qp.solver = 'lsqminnorm';
-option.qp.solver = 'mldivide';
+% option.qp.solver = 'mldivide';
 % option.qp.solver = 'MA57';
-% option.qp.solver = 'cg_steihaug';
+option.qp.solver = 'cg_steihaug';
 % option.qp.solver = 'lu';
 % start alg
 tic
 [xsol, xsol_stacked,logg] = solve_rapidPF_aladin(problem, mpc_split, option, names);
 toc
 % back to mpc
-%mpc_sol_aladin = back_to_mpc(mpc_split, xsol, logg);
+mpc_sol_aladin = back_to_mpc(mpc_split, xsol, logg);
 
 % compare result
-%[tab,~,error] = compare_results(xval, xsol)
+[tab,~,error] = compare_results(xval, xsol)
 % compare_constraints_violation(problem, logg);
 %compare_power_flow_between_regions(mpc_sol_aladin, mpc_merge.connections, mpc_split.regions, conn(:,1:2));
 % deviation_violation_iter_plot(mpc_split, xval, logg, names);

@@ -3,6 +3,9 @@ function [xopt, logg, flag] = run_aladin_algorithm(nlps,x0,lam0,A,b,option)
     tic
     xi     = x0;
     lam    = lam0;
+    if strcmp(option.qp.solver, 'cg_steihaug')
+        delta = 0.01;
+    end
     % initialize ALADIN algorithm
     aladin    = StartupALADIN(nlps,x0,A,b,option);
     %  main loop of ALADIN algorithm
@@ -14,7 +17,11 @@ function [xopt, logg, flag] = run_aladin_algorithm(nlps,x0,lam0,A,b,option)
         % 2. check termination condition
         [flag, res_consensus, aladin.logg]   = aladin.check_termination_condition(xi,yi);
         % 3. solve global QP
-        [dy,dlam] = aladin.global_step(sensitivities,lam,res_consensus);
+        if strcmp(option.qp.solver, 'cg_steihaug')
+            [dy,dlam,delta] = aladin.global_step(sensitivities,lam,res_consensus,yi,nlps,delta);
+        else
+            [dy,dlam,~] = aladin.global_step(sensitivities,lam,res_consensus);
+        end
         % 4. update primal and dual variables
         [xi, lam, aladin.logg] = aladin.primal_dual_update(yi,dy,lam,dlam);
         % 5. terminate when trap in the loop, local&global step repeated themselves
@@ -44,7 +51,7 @@ function [xopt, logg, flag] = run_aladin_algorithm(nlps,x0,lam0,A,b,option)
     if logg.iter>aladin.option.iter_max 
         logg.iter=aladin.option.iter_max;
     end
-    logg = logg.post_loop_dataprocessing;
+    logg = logg.post_loop_dataprocessing
     % plot iter info
 %     if aladin.option.iter_plot
 %         logg.plot_iter_info;
