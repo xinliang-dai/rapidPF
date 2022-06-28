@@ -95,7 +95,7 @@ end
 
 option              = AladinOption;
 option.problem_type = problem_type;
-option.iter_max  = 100;
+option.iter_max  = 200;
 option.tol       = 1e-8;
 option.mu0       = 1e2;
 option.rho0      = 1e2;
