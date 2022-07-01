@@ -95,16 +95,16 @@ end
 
 option              = AladinOption;
 option.problem_type = problem_type;
-option.iter_max  = 200;
+option.iter_max  = 50;
 option.tol       = 1e-8;
 option.mu0       = 1e2;
 option.rho0      = 1e2;
 option.nlp       = NLPoption;
 % option.nlp.solver = 'mldivide'; %solver;
 % option.nlp.solver = 'cg_steihaug';
-option.nlp.solver = 'cg_steihaug';
+% option.nlp.solver = 'cg_steihaug';
 % option.nlp.solver = 'MA57';
-% option.nlp.solver = 'casadi';
+option.nlp.solver = 'casadi';
 option.nlp.iter_display = false;
 option.qp        = QPoption;
 option.qp.regularization_hess = false;

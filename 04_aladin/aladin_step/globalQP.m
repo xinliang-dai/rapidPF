@@ -94,7 +94,7 @@ classdef globalQP
 
         end
         
-        function [dy,dlam,delta] = solve_global_qp(obj,Nlam,Nx,lam,yi,nlps,delta)
+        function [dy,dlam] = solve_global_qp(obj,Nlam,Nx,lam,delta)
             
             %% Solve equvialent linear system - A x = b 
             if strcmp(obj.option.solver, 'casadi')
@@ -130,8 +130,9 @@ classdef globalQP
                     case 'cg_steihaug'
 %                        delta    = (obj.AQP'*obj.KQP*obj.bQP - obj.gQP)'*(obj.AQP'*obj.KQP*obj.bQP - obj.gQP);
 %                         dy   = cg_steihaug((obj.HQP + obj.AQP'*100*obj.AQP),-(obj.AQP'*100*obj.bQP + obj.gQP),1e-16,10000);
-                        dy   = cg_steihaug((obj.HQP + obj.AQP'*100*obj.AQP),-(obj.AQP'*100*obj.bQP + obj.gQP),1e-8,10000,delta);
-                        [delta, dy] = trust_region(obj.HQP,obj.gQP,dy,yi,nlps,delta);
+                        dy   = cg_steihaug((obj.HQP + obj.AQP'*100*obj.AQP),-(obj.AQP'*100*obj.bQP + obj.gQP),1e-16,50000,delta);
+%                        dy   = cg_steihaug(obj.HQP,-obj.gQP,1e-8,10000,delta);
+                        
 %                         dy = pcg((obj.HQP + obj.AQP'*100*obj.AQP),-(obj.AQP'*100*obj.bQP + obj.gQP), 1e-6,100000);
 %                         norm(dy1-dy,2)
 %                         opt.SYM = true;

@@ -127,7 +127,7 @@ classdef StartupALADIN
         end
         
         % Method 3
-        function [dy,dlam,delta] = global_step(obj,sensitivities, lam, consensus_residual,yi,nlps,delta)
+        function [dy,dlam,delta] = global_step(obj,sensitivities, lam, consensus_residual,delta,yi)
             %% 3. solve global QP problem
             % initialize QP problem
             % INPUT
@@ -141,9 +141,12 @@ classdef StartupALADIN
             obj.qp             = globalQP(obj,sensitivities,consensus_residual,lam);
             % solve equivalent linear system
             if strcmp(obj.option.qp.solver, 'cg_steihaug')
-                [dy,dlam,delta]   = obj.qp.solve_global_qp(obj.Nlam, obj.Nx, lam ,yi, nlps, delta);      
+                [dy,dlam]   = obj.qp.solve_global_qp(obj.Nlam, obj.Nx, lam, delta);      
+                [delta,dy] = trust_region(obj.qp.HQP,obj.qp.gQP,dy,yi,obj.nlp,delta);
+                % [delta,dy] = trust_region(H,g,dy,yi,obj.nlp,delta);
             else
-                [dy,dlam,~]   = obj.qp.solve_global_qp(obj.Nlam, obj.Nx, lam ,yi, nlps);   
+                [dy,dlam]   = obj.qp.solve_global_qp(obj.Nlam, obj.Nx, lam);   
+                delta = 0;
             end
             % wrap angle variable into interval [-pi, pi]
         end        

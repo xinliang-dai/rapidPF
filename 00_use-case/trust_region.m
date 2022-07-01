@@ -1,9 +1,11 @@
 function [delta, dy] = trust_region(A,b,p,yi,nlps,delta)
-eta = 1/5;
+eta_1 = 0.05;
+eta_2 = 0.85;
 delta_f = 0;
 id_x = 1;
 n_region = numel(yi);
-det_max = 0.00001;
+theta_1 = 2.5;
+
 if isa(A,'function_handle')
     Ap = A(p);
 else
@@ -19,16 +21,16 @@ for j = 1:n_region
 end
 rho = - delta_f / (b'*p+p'*Ap/2);
 % update delta
-if rho < 1/4
-    delta = delta/4;
+if rho < eta_1
+    delta = sqrt(p'*p)/4;
 else
-    if rho > 3/4  && (p'*p - delta^2 < 1e-6)
-        delta = min(2*delta, det_max);
+    if rho > eta_2  % && (p'*p - delta^2 < 1e-6)
+        delta =  max(theta_1*sqrt(p'*p),delta);
     end
 end
 % check if update 
-if rho > eta
-    dy = p;
-else 
+if rho < eta_1
     dy = zeros(size(p));
+else 
+    dy = p;
 end

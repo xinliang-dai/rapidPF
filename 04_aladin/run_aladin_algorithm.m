@@ -4,7 +4,7 @@ function [xopt, logg, flag] = run_aladin_algorithm(nlps,x0,lam0,A,b,option)
     xi     = x0;
     lam    = lam0;
     if strcmp(option.qp.solver, 'cg_steihaug')
-        delta = 0.01;
+        delta = 20;
     end
     % initialize ALADIN algorithm
     aladin    = StartupALADIN(nlps,x0,A,b,option);
@@ -18,7 +18,7 @@ function [xopt, logg, flag] = run_aladin_algorithm(nlps,x0,lam0,A,b,option)
         [flag, res_consensus, aladin.logg]   = aladin.check_termination_condition(xi,yi);
         % 3. solve global QP
         if strcmp(option.qp.solver, 'cg_steihaug')
-            [dy,dlam,delta] = aladin.global_step(sensitivities,lam,res_consensus,yi,nlps,delta);
+            [dy,dlam,delta] = aladin.global_step(sensitivities,lam,res_consensus,delta,yi);
         else
             [dy,dlam,~] = aladin.global_step(sensitivities,lam,res_consensus);
         end
@@ -51,7 +51,7 @@ function [xopt, logg, flag] = run_aladin_algorithm(nlps,x0,lam0,A,b,option)
     if logg.iter>aladin.option.iter_max 
         logg.iter=aladin.option.iter_max;
     end
-    logg = logg.post_loop_dataprocessing
+    logg = logg.post_loop_dataprocessing;
     % plot iter info
 %     if aladin.option.iter_plot
 %         logg.plot_iter_info;

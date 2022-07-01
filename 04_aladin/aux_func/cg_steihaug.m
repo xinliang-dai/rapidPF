@@ -1,8 +1,8 @@
 function x = cg_steihaug(A,b,toltol,maxit,delta)
 % lin
 % check alg options
-if nargin < 3 || isempty(toltol), toltol = 1e-8; end
-if nargin < 4 || isempty(maxit), maxit = min(20,length(b)); end
+if nargin < 3 || isempty(toltol), toltol = 1e-16; end
+if nargin < 4 || isempty(maxit), maxit = min(50,length(b)); end
 if nargin < 5 || isempty(delta), delta = []; end
 
 % intial
@@ -24,27 +24,27 @@ i = 0;
             % 1. terminate when negative defined A, return cauchy-point
             tau = find_steplength_on_edge(x,p,delta);
             x   = x + tau * p;
-%             i
-%             flag = 1
+            i
+            flag = 1
             return 
         end
         rho = rr/(p'*Ap);       % one-dim minimizer
         xk  = x;
         x   = x + rho*p;        % update state
-%        if ~isempty(delta) && x'*x > delta^2 
+        if ~isempty(delta) && x'*x > delta^2 
             % 2. terminate when new step encounters edge of trust-region
-%            tau = find_steplength_on_edge(xk,p,delta);
-%            x   = xk + tau * p;
-%             i
-%             flag = 2
-%            return
-%        end
+            tau = find_steplength_on_edge(xk,p,delta);
+            x   = xk + tau * p;
+            i
+            flag = 2
+            return
+        end
         r      = r + rho*Ap;       % update residual
         rr_new = r'*r;
         if rr_new<toltol
             % 3. terminate when reach CG solution within trust region
-%             i
-%             flag = 3
+            i
+            flag = 3
             return
         end
         beta   = rr_new/rr;      % update the parameter to ensure conjugate 
