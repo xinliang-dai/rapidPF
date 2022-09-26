@@ -2,24 +2,6 @@
 
 - Citation：
 
-@article{dai2022rapid,
-  title = {Rapid Scalable Distributed Power Flow with Open-Source Implementation},
-  author = {Xinliang Dai and Yichen Cai and Yuning Jiang and Veit Hagenmeyer},
-    journal = {IFAC-PapersOnLine},
-    volume = {55},
-    number = {13},
-    pages = {145-150},
-    year = {2022}
-}
+[1] [Rapid Scalable Distributed Power Flow with Open-Source Implementation](https://arxiv.org/pdf/2203.16335.pdf)
 
-@article{muhlpfordt2021distributed,
-  title={Distributed power flow and distributed optimization—Formulation, solution, and open source implementation},
-  author={M{\"u}hlpfordt, Tillmann and Dai, Xinliang and Engelmann, Alexander and Hagenmeyer, Veit},
-  journal={Sustain. Energy, Grids Netw.},
-  volume={26},
-  pages={100471},
-  year={2021},
-  publisher={Elsevier}
-}
-
-
+[2] [Distributed power flow and distributed optimization—Formulation, solution, and open source implementation](https://reader.elsevier.com/reader/sd/pii/S2352467721000424?token=D5EECD6D02FA35FD7A0A24234FF2FF26B787C510868CF47682E303B0BBB8B7AEDC5FE2196AE0690C20B10A0E50FB8860&originRegion=eu-west-1&originCreation=20220926133903)
