@@ -1,5 +1,7 @@
 - Start： run rapidPF/00_use-case/main_test.m
 
+- Code for Hypergraph based Distributed Sequential Quadratic Programming (HDSQP) will be avaliable soon
+
 - Citation：
 
 [1] [Rapid Scalable Distributed Power Flow with Open-Source Implementation](https://arxiv.org/pdf/2203.16335.pdf)
