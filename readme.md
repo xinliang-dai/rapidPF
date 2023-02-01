@@ -1,6 +1,6 @@
 - Start： run rapidPF/00_use-case/main_test.m
 
-- Code for Hypergraph based Distributed Sequential Quadratic Programming (HDSQP) will be avaliable soon
+- Code for Hypergraph based Distributed Sequential Quadratic Programming (HDSQP) can be found [here](https://github.com/xinliang-dai/rapidPF/blob/hdq-pf/00_use-case/DSQP_HDQ_detail.m). Description will be avaliable soon.
 
 - Citation：
 
