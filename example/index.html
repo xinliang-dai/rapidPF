@@ -9,14 +9,19 @@
         <meta name="description" content="Documentation for rapidPF">
       
       
-      
         <meta name="author" content="Tillmann Mühlpfordt">
       
       
         <link rel="canonical" href="https://kit-iai.github.io/rapidPF/example/">
       
-      <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.3">
+      
+        <link rel="prev" href="../overview/">
+      
+      
+        <link rel="next" href="../assumptions/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.18">
     
     
       
@@ -24,41 +29,39 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.1655a90d.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.26e3688c.min.css">
+      
+      
+
+    
+    
+    
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.7fa14f5b.min.css">
-        
-      
-    
-    
-    
-      
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
-        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
-    
     
     
       <link rel="stylesheet" href="../css/extra.css">
     
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
+
+    
     
     
   </head>
   
   
-    
-    
-    
-    
-    
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
-      
+    <body dir="ltr">
   
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -75,18 +78,21 @@
       
     </div>
     
+    
       
 
-<header class="md-header" data-md-component="header">
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="https://kit-iai.github.io/rapidPF/" title="rapidPF documentation" class="md-header__button md-logo" aria-label="rapidPF documentation">
+    <a href=".." title="rapidPF documentation" class="md-header__button md-logo" aria-label="rapidPF documentation" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -104,26 +110,28 @@
         </div>
       </div>
     </div>
-    <div class="md-header__options">
-      
-    </div>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
       </label>
-      
-<div class="md-search" data-md-component="search" role="dialog">
+      <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -131,7 +139,7 @@
           <div class="md-search-result__meta">
             Initializing search
           </div>
-          <ol class="md-search-result__list"></ol>
+          <ol class="md-search-result__list" role="presentation"></ol>
         </div>
       </div>
     </div>
@@ -140,11 +148,10 @@
     
     
       <div class="md-header__source">
-        
-<a href="https://github.com/KIT-IAI/rapidPF/" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/xinliang-dai/rapidPF" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     GitHub
@@ -153,11 +160,14 @@
       </div>
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -171,25 +181,22 @@
                     
 
 
-
-
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="https://kit-iai.github.io/rapidPF/" title="rapidPF documentation" class="md-nav__button md-logo" aria-label="rapidPF documentation">
+    <a href=".." title="rapidPF documentation" class="md-nav__button md-logo" aria-label="rapidPF documentation" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
 
     </a>
     rapidPF documentation
   </label>
   
     <div class="md-nav__source">
-      
-<a href="https://github.com/KIT-IAI/rapidPF/" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/xinliang-dai/rapidPF" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     GitHub
@@ -270,7 +277,8 @@
   
     <li class="md-nav__item md-nav__item--active">
       
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
       
         
       
@@ -285,7 +293,9 @@
       </a>
       
         
+
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -422,13 +432,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
       
-      <label class="md-nav__link" for="__nav_8">
-        Mfiles
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-      <nav class="md-nav" aria-label="Mfiles" data-md-level="1">
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+          Mfiles
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_8">
           <span class="md-nav__icon md-icon"></span>
           Mfiles
@@ -436,6 +451,7 @@
         <ul class="md-nav__list" data-md-scrollfix>
           
             
+              
   
   
   
@@ -443,13 +459,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_1" type="checkbox" id="__nav_8_1" >
       
-      <label class="md-nav__link" for="__nav_8_1">
-        01 generator
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-      <nav class="md-nav" aria-label="01 generator" data-md-level="2">
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_1" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8_1" id="__nav_8_1_label" tabindex="0">
+          01 generator
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_1_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_8_1">
           <span class="md-nav__icon md-icon"></span>
           01 generator
@@ -457,6 +478,7 @@
         <ul class="md-nav__list" data-md-scrollfix>
           
             
+              
   
   
   
@@ -467,8 +489,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -479,8 +503,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -491,14 +517,17 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -506,13 +535,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_2" type="checkbox" id="__nav_8_2" >
       
-      <label class="md-nav__link" for="__nav_8_2">
-        02 splitter
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-      <nav class="md-nav" aria-label="02 splitter" data-md-level="2">
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8_2" id="__nav_8_2_label" tabindex="0">
+          02 splitter
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_2_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_8_2">
           <span class="md-nav__icon md-icon"></span>
           02 splitter
@@ -520,6 +554,7 @@
         <ul class="md-nav__list" data-md-scrollfix>
           
             
+              
   
   
   
@@ -530,8 +565,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -542,8 +579,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -554,14 +593,17 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -569,13 +611,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_3" type="checkbox" id="__nav_8_3" >
       
-      <label class="md-nav__link" for="__nav_8_3">
-        03 parser
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-      <nav class="md-nav" aria-label="03 parser" data-md-level="2">
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8_3" id="__nav_8_3_label" tabindex="0">
+          03 parser
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_3_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_8_3">
           <span class="md-nav__icon md-icon"></span>
           03 parser
@@ -583,6 +630,7 @@
         <ul class="md-nav__list" data-md-scrollfix>
           
             
+              
   
   
   
@@ -593,8 +641,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -605,32 +655,66 @@
     </li>
   
 
+            
           
             
+              
   
   
   
     <li class="md-nav__item">
-      <a href="../mfiles/03_parser/run_ADMM_cplex/" class="md-nav__link">
-        run ADMM cplex
+      <a href="../mfiles/03_parser/create_power_flow_equation_for_p/" class="md-nav__link">
+        create_power_flow_equation_for_p
       </a>
     </li>
   
 
+            
           
             
+              
   
   
   
     <li class="md-nav__item">
-      <a href="../mfiles/03_parser/solve_distributed_problem_with_admm_cplex/" class="md-nav__link">
-        solve_distributed_problem_with_aladin
+      <a href="../mfiles/03_parser/create_power_flow_equation_for_q/" class="md-nav__link">
+        create_power_flow_equation_for_q
       </a>
     </li>
   
 
+            
           
             
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mfiles/03_parser/generate_distributed_problem/" class="md-nav__link">
+        generate_distributed_problem
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mfiles/03_parser/solve_distributed_problem_centralized/" class="md-nav__link">
+        solve_distributed_problem_centralized
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
   
   
   
@@ -641,8 +725,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -653,12 +739,14 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
     </li>
   
 
+            
           
         </ul>
       </nav>
@@ -693,7 +781,9 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -789,146 +879,147 @@
               </div>
             
           
-          <div class="md-content" data-md-component="content">
-            <article class="md-content__inner md-typeset">
-              
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
                 
-                  <a href="https://github.com/KIT-IAI/rapidPF/edit/master/docs/example.md" title="Edit this page" class="md-content__button md-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
-                  </a>
-                
-                
-                <h1 id="example">Example</h1>
+                  
+
+  
+  
+
+
+<h1 id="example">Example</h1>
 <p>This is a beginning-to-end-example about how to solve distributed power flow with <a href="https://github.com/alexe15/ALADIN.m">the Aladin toolbox</a>.
 <a href="#entire-code">Click here</a> to see the plain code.</p>
 <h2 id="setup">Setup</h2>
 <p>Starting from the home directory of the package, let&rsquo;s make a tabula rasa and switch to the use case folder</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="nb">clear</span><span class="w"> </span><span class="nb">all</span><span class="p">;</span><span class="w"> </span><span class="n">close</span><span class="w"> </span><span class="s">all</span><span class="p">;</span><span class="w"> </span><span class="nb">clc</span><span class="p">;</span><span class="w"></span>
-<span class="nb">cd</span><span class="p">(</span><span class="s">&#39;00_use-case&#39;</span><span class="p">)</span><span class="w"></span>
-</code></pre></div>
-</td></tr></table>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">clear</span><span class="w"> </span><span class="nb">all</span><span class="p">;</span><span class="w"> </span><span class="n">close</span><span class="w"> </span><span class="s">all</span><span class="p">;</span><span class="w"> </span><span class="nb">clc</span><span class="p">;</span>
+<span class="nb">cd</span><span class="p">(</span><span class="s">&#39;00_use-case&#39;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+
 <p>If not done already, add the source files to the path</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="nb">addpath</span><span class="p">(</span><span class="nb">genpath</span><span class="p">(</span><span class="s">&#39;../01_generator/&#39;</span><span class="p">));</span><span class="w"></span>
-<span class="nb">addpath</span><span class="p">(</span><span class="nb">genpath</span><span class="p">(</span><span class="s">&#39;../02_splitter/&#39;</span><span class="p">));</span><span class="w"></span>
-<span class="nb">addpath</span><span class="p">(</span><span class="nb">genpath</span><span class="p">(</span><span class="s">&#39;../03_parser/&#39;</span><span class="p">));</span><span class="w"></span>
-</code></pre></div>
-</td></tr></table>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">addpath</span><span class="p">(</span><span class="nb">genpath</span><span class="p">(</span><span class="s">&#39;../01_generator/&#39;</span><span class="p">));</span>
+<span class="nb">addpath</span><span class="p">(</span><span class="nb">genpath</span><span class="p">(</span><span class="s">&#39;../02_splitter/&#39;</span><span class="p">));</span>
+<span class="nb">addpath</span><span class="p">(</span><span class="nb">genpath</span><span class="p">(</span><span class="s">&#39;../03_parser/&#39;</span><span class="p">));</span>
+</code></pre></div></td></tr></table></div>
+
 <p>We would like the following fields to be merged from the case files</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">fields_to_merge</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">{</span><span class="s">&#39;bus&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;gen&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;branch&#39;</span><span class="p">};</span><span class="w"></span>
-</code></pre></div>
-</td></tr></table>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">fields_to_merge</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">{</span><span class="s">&#39;bus&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;gen&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;branch&#39;</span><span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+
 <h2 id="specify-inputs">Specify inputs</h2>
 <p>We first generate a name struct that acts as a de-facto global variable for naming structs.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">names</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">generate_name_struct</span><span class="p">();</span><span class="w"></span>
-</code></pre></div>
-</td></tr></table>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">names</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">generate_name_struct</span><span class="p">();</span>
+</code></pre></div></td></tr></table></div>
+
 <p>Next, we specify the master and worker systems by loading their case files.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">mpc_master</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="n">loadcase</span><span class="p">(</span><span class="s">&#39;case14&#39;</span><span class="p">);</span><span class="w"></span>
-<span class="n">mpc_workers</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">loadcase</span><span class="p">(</span><span class="s">&#39;case30&#39;</span><span class="p">);</span><span class="w"> </span><span class="n">loadcase</span><span class="p">(</span><span class="s">&#39;case9&#39;</span><span class="p">)</span><span class="w">  </span><span class="p">};</span><span class="w"></span>
-</code></pre></div>
-</td></tr></table>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">mpc_master</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="n">loadcase</span><span class="p">(</span><span class="s">&#39;case14&#39;</span><span class="p">);</span>
+<span class="n">mpc_workers</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">loadcase</span><span class="p">(</span><span class="s">&#39;case30&#39;</span><span class="p">);</span><span class="w"> </span><span class="n">loadcase</span><span class="p">(</span><span class="s">&#39;case9&#39;</span><span class="p">)</span><span class="w">  </span><span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+
 <p>Additionally, we need to specify <em>who</em> is connected to <em>whom</em>.
 These connections are specified in a connection array:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">connection_array</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">1</span><span class="w">  </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">connection_array</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">1</span><span class="w">  </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
 <span class="w">                     </span><span class="n">2</span><span class="w"> </span><span class="s">3</span><span class="w">  </span><span class="s">2</span><span class="w"> </span><span class="s">3</span><span class="p">;</span><span class="w"> </span>
-<span class="w">                     </span><span class="n">2</span><span class="w"> </span><span class="s">3</span><span class="w"> </span><span class="s">13</span><span class="w"> </span><span class="s">1</span><span class="p">;</span><span class="w"> </span><span class="p">];</span><span class="w"></span>
-</code></pre></div>
-</td></tr></table>
+<span class="w">                     </span><span class="n">2</span><span class="w"> </span><span class="s">3</span><span class="w"> </span><span class="s">13</span><span class="w"> </span><span class="s">1</span><span class="p">;</span><span class="w"> </span><span class="p">];</span>
+</code></pre></div></td></tr></table></div>
+
 <p>The first row reads: system 2 is connected to system 1, specifically the first bus of system 2 is connected to the second bus of system 1.
 Likewise, the second row reads: system 2 is connected to system 3, specifically the second bus of system 2 is connected to the third bus of system 3.</p>
 <p>However, we need not just to specify <em>who</em> is connected to <em>whom</em>, but also <em>how</em>.
 Hence, we model a connecting transformer.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
-<span class="normal">5</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">trafo_params</span><span class="p">.</span><span class="n">r</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="n">trafo_params</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mf">0.00623</span><span class="p">;</span><span class="w"></span>
-<span class="n">trafo_params</span><span class="p">.</span><span class="n">b</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="n">trafo_params</span><span class="p">.</span><span class="n">ratio</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mf">0.985</span><span class="p">;</span><span class="w"></span>
-<span class="n">trafo_params</span><span class="p">.</span><span class="n">angle</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-</code></pre></div>
-</td></tr></table>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">trafo_params</span><span class="p">.</span><span class="n">r</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="n">trafo_params</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mf">0.00623</span><span class="p">;</span>
+<span class="n">trafo_params</span><span class="p">.</span><span class="n">b</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="n">trafo_params</span><span class="p">.</span><span class="n">ratio</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mf">0.985</span><span class="p">;</span>
+<span class="n">trafo_params</span><span class="p">.</span><span class="n">angle</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+
 <p>Finally, we can call <a href="mfiles/01_generator/build_connection_table.md"><code>build_connection_table</code></a>.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">conn</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">build_connection_table</span><span class="p">(</span><span class="n">connection_array</span><span class="p">,</span><span class="w"> </span><span class="n">trafo_params</span><span class="p">);</span><span class="w"></span>
-</code></pre></div>
-</td></tr></table>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">conn</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">build_connection_table</span><span class="p">(</span><span class="n">connection_array</span><span class="p">,</span><span class="w"> </span><span class="n">trafo_params</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+
 <h2 id="problem-formulation">Problem formulation</h2>
 <p>Having done the setup, we are now ready to use the three main blocks: the case file generator, the case file splitter, and the case file parser:</p>
 <h3 id="case-file-generator">Case file generator</h3>
 <p>Calling the case file generator means to specify the master and the workers together with the connection table, and what fields shall be merged.
 The most convenient way is to call <a href="../mfiles/01_generator/run_case_file_generator/"><code>run_case_file_generator</code></a></p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">mpc_merge</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">run_case_file_generator</span><span class="p">(</span><span class="n">mpc_master</span><span class="p">,</span><span class="w"> </span><span class="n">mpc_workers</span><span class="p">,</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">fields_to_merge</span><span class="p">,</span><span class="w"> </span><span class="n">names</span><span class="p">);</span><span class="w"></span>
-</code></pre></div>
-</td></tr></table>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">mpc_merge</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">run_case_file_generator</span><span class="p">(</span><span class="n">mpc_master</span><span class="p">,</span><span class="w"> </span><span class="n">mpc_workers</span><span class="p">,</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">fields_to_merge</span><span class="p">,</span><span class="w"> </span><span class="n">names</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+
 <p>The output is a case file that has a lot of extra information.</p>
 <h3 id="case-file-splitter">Case file splitter</h3>
 <p>The output of the case file generator is the input to the case file splitter, together with connection information.
 We call <a href="../mfiles/02_splitter/run_case_file_splitter/"><code>run_case_file_splitter</code></a></p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">mpc_split</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">run_case_file_splitter</span><span class="p">(</span><span class="n">mpc_merge</span><span class="p">,</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">names</span><span class="p">);</span><span class="w"></span>
-</code></pre></div>
-</td></tr></table>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">mpc_split</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">run_case_file_splitter</span><span class="p">(</span><span class="n">mpc_merge</span><span class="p">,</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">names</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+
 <p>The output is, again, a case file that has a lot of extra information.</p>
 <h3 id="case-file-parser">Case file parser</h3>
 <p>Finally, the case file parser takes the output from the splitter, and generates a problem formulation, using <a href="mfiles/03_parser/generate_distributed_problem_for_aladin.md"><code>generate_distributed_problem_for_aladin</code></a>.
 Note that we can need to specify whether we create a <code>feasibility</code> or a <code>least-squares</code> problem formulation.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">problem</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">generate_distributed_problem_for_aladin</span><span class="p">(</span><span class="n">mpc_split</span><span class="p">,</span><span class="w"> </span><span class="n">names</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;least-squares&#39;</span><span class="p">);</span><span class="w"></span>
-</code></pre></div>
-</td></tr></table>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">problem</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">generate_distributed_problem_for_aladin</span><span class="p">(</span><span class="n">mpc_split</span><span class="p">,</span><span class="w"> </span><span class="n">names</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;least-squares&#39;</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+
 <p>The problem formulation is a struct that contains all relevant equations.</p>
 <p>Finally, we need to add a numerical solver (<code>fmincon</code>, <code>fminunc</code>, <code>worhp</code>, <code>Casadi+Ipopt</code>)</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="c">% add a solver</span><span class="w"></span>
-<span class="n">problem</span><span class="p">.</span><span class="n">solver</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;fmincon&#39;</span><span class="p">;</span><span class="w"></span>
-</code></pre></div>
-</td></tr></table>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c">% add a solver</span>
+<span class="n">problem</span><span class="p">.</span><span class="n">solver</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;fmincon&#39;</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+
 <h2 id="problem-solution">Problem solution</h2>
 <p>Having created a valid problem formulation, we rely on the <a href="https://github.com/alexe15/ALADIN.m">Aladin toolbox</a> to solve the problem.
 Aladin requires a set of parameters (using the default values is also possible, and usually a good idea).
 We use the function <a href="../mfiles/03_parser/solve_distributed_problem_with_aladin/"><code>solve_distributed_problem_with_aladin</code></a></p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
-<span class="normal">5</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">opts</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">struct</span><span class="p">(</span><span class="s">&#39;maxiter&#39;</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;solveQP&#39;</span><span class="p">,</span><span class="s">&#39;MA57&#39;</span><span class="p">);</span><span class="w"></span>
-<span class="n">opts</span><span class="p">.</span><span class="n">reg</span><span class="w"> </span><span class="p">=</span><span class="s">&#39;false&#39;</span><span class="p">;</span><span class="w"></span>
-<span class="n">opts</span><span class="p">.</span><span class="n">rho0</span><span class="p">=</span><span class="w"> </span><span class="mf">1e2</span><span class="p">;</span><span class="w"></span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">opts</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">struct</span><span class="p">(</span><span class="s">&#39;maxiter&#39;</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;solveQP&#39;</span><span class="p">,</span><span class="s">&#39;MA57&#39;</span><span class="p">);</span>
+<span class="n">opts</span><span class="p">.</span><span class="n">reg</span><span class="w"> </span><span class="p">=</span><span class="s">&#39;false&#39;</span><span class="p">;</span>
+<span class="n">opts</span><span class="p">.</span><span class="n">rho0</span><span class="p">=</span><span class="w"> </span><span class="mf">1e2</span><span class="p">;</span>
 
-<span class="p">[</span><span class="n">xsol_aladin</span><span class="p">,</span><span class="w"> </span><span class="n">xsol_stack_aladin</span><span class="p">,</span><span class="w"> </span><span class="n">mpc_sol_aladin</span><span class="p">,</span><span class="w"> </span><span class="n">logg</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">solve_distributed_problem_with_aladin</span><span class="p">(</span><span class="n">mpc_split</span><span class="p">,</span><span class="w"> </span><span class="n">problem</span><span class="p">,</span><span class="w"> </span><span class="n">names</span><span class="p">,</span><span class="w"> </span><span class="n">opts</span><span class="p">);</span><span class="w"></span>
-</code></pre></div>
-</td></tr></table>
+<span class="p">[</span><span class="n">xsol_aladin</span><span class="p">,</span><span class="w"> </span><span class="n">xsol_stack_aladin</span><span class="p">,</span><span class="w"> </span><span class="n">mpc_sol_aladin</span><span class="p">,</span><span class="w"> </span><span class="n">logg</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">solve_distributed_problem_with_aladin</span><span class="p">(</span><span class="n">mpc_split</span><span class="p">,</span><span class="w"> </span><span class="n">problem</span><span class="p">,</span><span class="w"> </span><span class="n">names</span><span class="p">,</span><span class="w"> </span><span class="n">opts</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+
 <p>The function returns four outputs: <code>xsol_aladin</code> and <code>xsol_stack_aladin</code> are both cells with as many entries as there are regions.
-In each entry, the state of region <span><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span> is stored: in <code>xsol_aladin</code> it is a matrix form with as many rows as there are buses in the region, and the four columns being the voltage angle, the voltage magnitude, the net active power, and the net reactive power; in <code>xsol_stack_aladin</code>, each entry is the vertically stacked equivalent of <code>xsol_aladin</code>.
+In each entry, the state of region <span class="arithmatex"><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span> is stored: in <code>xsol_aladin</code> it is a matrix form with as many rows as there are buses in the region, and the four columns being the voltage angle, the voltage magnitude, the net active power, and the net reactive power; in <code>xsol_stack_aladin</code>, each entry is the vertically stacked equivalent of <code>xsol_aladin</code>.
 The third output, <code>mpc_sol_aladin</code>, is a valid case file that can be used for further inspection.
 The fourth output contains logging information from the Aladin toolbox.</p>
 <h2 id="comparison">Comparison</h2>
 <p>How do we know that the solution we computed is actually correct?
 For that purpose, there is a validation function such as <a href="../mfiles/03_parser/validate_distributed_problem_formulation/"><code>validate_distributed_problem_formulation</code></a>.
 Simply put, the function uses <code>matpower</code> to validate that the generated problem formulation stored in <code>problem</code> is correct.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="p">[</span><span class="n">xval</span><span class="p">,</span><span class="w"> </span><span class="n">xval_stacked</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">validate_distributed_problem_formulation</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span><span class="w"> </span><span class="n">mpc_split</span><span class="p">,</span><span class="w"> </span><span class="n">names</span><span class="p">);</span><span class="w"></span>
-</code></pre></div>
-</td></tr></table>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">[</span><span class="n">xval</span><span class="p">,</span><span class="w"> </span><span class="n">xval_stacked</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">validate_distributed_problem_formulation</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span><span class="w"> </span><span class="n">mpc_split</span><span class="p">,</span><span class="w"> </span><span class="n">names</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+
 <p>The outputs have the same format as the first two outputs (<code>xsol_aladin</code> &amp; <code>xsol_stack_aladin</code>) from the <a href="#problem-solution">problem solution</a>.
 To compare the results we call <a href="mfiles/03_parser/compare_results.md"><code>compare_results</code></a>, which generates a humand-readable <code>table</code> output.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">comparison_aladin</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">compare_results</span><span class="p">(</span><span class="n">xval</span><span class="p">,</span><span class="w"> </span><span class="n">xsol_aladin</span><span class="p">)</span><span class="w"></span>
-</code></pre></div>
-</td></tr></table>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">comparison_aladin</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">compare_results</span><span class="p">(</span><span class="n">xval</span><span class="p">,</span><span class="w"> </span><span class="n">xsol_aladin</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+
 <h2 id="post-processing">Post-processing</h2>
 <p>There is a handy function for post-processing,
 This function provides a graphical impression of the overall constraint violations for both the power flow equations and the consensus violations.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">compare_constraints_violation</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span><span class="w"> </span><span class="n">logg</span><span class="p">);</span><span class="w"></span>
-</code></pre></div>
-</td></tr></table>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">compare_constraints_violation</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span><span class="w"> </span><span class="n">logg</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+
 <p>For this example the violation of the power flow equations, the bus specifications, and the consensus constraints are shown below per Aladin iteration.</p>
 <p><img alt="Simulation results for example" src="../figs/example-results.png" /></p>
 <h2 id="entire-code">Entire code</h2>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -973,111 +1064,80 @@ This function provides a graphical impression of the overall constraint violatio
 <span class="normal">43</span>
 <span class="normal">44</span>
 <span class="normal">45</span>
-<span class="normal">46</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="nb">clear</span><span class="w"> </span><span class="nb">all</span><span class="p">;</span><span class="w"> </span><span class="n">close</span><span class="w"> </span><span class="s">all</span><span class="p">;</span><span class="w"> </span><span class="nb">clc</span><span class="p">;</span><span class="w"></span>
+<span class="normal">46</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">clear</span><span class="w"> </span><span class="nb">all</span><span class="p">;</span><span class="w"> </span><span class="n">close</span><span class="w"> </span><span class="s">all</span><span class="p">;</span><span class="w"> </span><span class="nb">clc</span><span class="p">;</span>
 
-<span class="nb">addpath</span><span class="p">(</span><span class="nb">genpath</span><span class="p">(</span><span class="s">&#39;../01_generator/&#39;</span><span class="p">));</span><span class="w"></span>
-<span class="nb">addpath</span><span class="p">(</span><span class="nb">genpath</span><span class="p">(</span><span class="s">&#39;../02_splitter/&#39;</span><span class="p">));</span><span class="w"></span>
-<span class="nb">addpath</span><span class="p">(</span><span class="nb">genpath</span><span class="p">(</span><span class="s">&#39;../03_parser/&#39;</span><span class="p">));</span><span class="w"></span>
+<span class="nb">addpath</span><span class="p">(</span><span class="nb">genpath</span><span class="p">(</span><span class="s">&#39;../01_generator/&#39;</span><span class="p">));</span>
+<span class="nb">addpath</span><span class="p">(</span><span class="nb">genpath</span><span class="p">(</span><span class="s">&#39;../02_splitter/&#39;</span><span class="p">));</span>
+<span class="nb">addpath</span><span class="p">(</span><span class="nb">genpath</span><span class="p">(</span><span class="s">&#39;../03_parser/&#39;</span><span class="p">));</span>
 
-<span class="n">names</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">generate_name_struct</span><span class="p">();</span><span class="w"></span>
-<span class="c">%% setup</span><span class="w"></span>
-<span class="n">fields_to_merge</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">{</span><span class="s">&#39;bus&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;gen&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;branch&#39;</span><span class="p">};</span><span class="w"></span>
-<span class="n">mpc_master</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="n">loadcase</span><span class="p">(</span><span class="s">&#39;case14&#39;</span><span class="p">);</span><span class="w"></span>
-<span class="n">mpc_workers</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">loadcase</span><span class="p">(</span><span class="s">&#39;case30&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">             </span><span class="n">loadcase</span><span class="p">(</span><span class="s">&#39;case9&#39;</span><span class="p">)</span><span class="w">  </span><span class="p">};</span><span class="w"></span>
+<span class="n">names</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">generate_name_struct</span><span class="p">();</span>
+<span class="c">%% setup</span>
+<span class="n">fields_to_merge</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">{</span><span class="s">&#39;bus&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;gen&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;branch&#39;</span><span class="p">};</span>
+<span class="n">mpc_master</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="n">loadcase</span><span class="p">(</span><span class="s">&#39;case14&#39;</span><span class="p">);</span>
+<span class="n">mpc_workers</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">loadcase</span><span class="p">(</span><span class="s">&#39;case30&#39;</span><span class="p">)</span>
+<span class="w">             </span><span class="n">loadcase</span><span class="p">(</span><span class="s">&#39;case9&#39;</span><span class="p">)</span><span class="w">  </span><span class="p">};</span>
 
-<span class="n">connection_array</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="n">connection_array</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
 <span class="w">                    </span><span class="n">2</span><span class="w"> </span><span class="s">3</span><span class="w"> </span><span class="s">2</span><span class="w"> </span><span class="s">3</span><span class="p">;</span><span class="w"> </span>
-<span class="w">                    </span><span class="n">2</span><span class="w"> </span><span class="s">3</span><span class="w"> </span><span class="s">13</span><span class="w"> </span><span class="s">1</span><span class="p">;</span><span class="w"></span>
-<span class="w">                    </span><span class="p">];</span><span class="w"></span>
+<span class="w">                    </span><span class="n">2</span><span class="w"> </span><span class="s">3</span><span class="w"> </span><span class="s">13</span><span class="w"> </span><span class="s">1</span><span class="p">;</span>
+<span class="w">                    </span><span class="p">];</span>
 
-<span class="n">trafo_params</span><span class="p">.</span><span class="n">r</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="n">trafo_params</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mf">0.00623</span><span class="p">;</span><span class="w"></span>
-<span class="n">trafo_params</span><span class="p">.</span><span class="n">b</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="n">trafo_params</span><span class="p">.</span><span class="n">ratio</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mf">0.985</span><span class="p">;</span><span class="w"></span>
-<span class="n">trafo_params</span><span class="p">.</span><span class="n">angle</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="n">trafo_params</span><span class="p">.</span><span class="n">r</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="n">trafo_params</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mf">0.00623</span><span class="p">;</span>
+<span class="n">trafo_params</span><span class="p">.</span><span class="n">b</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="n">trafo_params</span><span class="p">.</span><span class="n">ratio</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mf">0.985</span><span class="p">;</span>
+<span class="n">trafo_params</span><span class="p">.</span><span class="n">angle</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
-<span class="n">conn</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">build_connection_table</span><span class="p">(</span><span class="n">connection_array</span><span class="p">,</span><span class="w"> </span><span class="n">trafo_params</span><span class="p">);</span><span class="w"></span>
+<span class="n">conn</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">build_connection_table</span><span class="p">(</span><span class="n">connection_array</span><span class="p">,</span><span class="w"> </span><span class="n">trafo_params</span><span class="p">);</span>
 
-<span class="c">%% main</span><span class="w"></span>
-<span class="c">% case-file-generator</span><span class="w"></span>
-<span class="n">mpc_merge</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">run_case_file_generator</span><span class="p">(</span><span class="n">mpc_master</span><span class="p">,</span><span class="w"> </span><span class="n">mpc_workers</span><span class="p">,</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">fields_to_merge</span><span class="p">,</span><span class="w"> </span><span class="n">names</span><span class="p">);</span><span class="w"></span>
-<span class="c">% case-file-splitter</span><span class="w"></span>
-<span class="n">mpc_split</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">run_case_file_splitter</span><span class="p">(</span><span class="n">mpc_merge</span><span class="p">,</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">names</span><span class="p">);</span><span class="w"></span>
-<span class="c">% generate problem formulation for aladin</span><span class="w"></span>
-<span class="n">problem</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">generate_distributed_problem_for_aladin</span><span class="p">(</span><span class="n">mpc_split</span><span class="p">,</span><span class="w"> </span><span class="n">names</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;least-squares&#39;</span><span class="p">);</span><span class="w"></span>
-<span class="c">% add a solver</span><span class="w"></span>
-<span class="n">problem</span><span class="p">.</span><span class="n">solver</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;fmincon&#39;</span><span class="p">;</span><span class="w"></span>
-<span class="c">% validate problem formulation</span><span class="w"></span>
-<span class="p">[</span><span class="n">xval</span><span class="p">,</span><span class="w"> </span><span class="n">xval_stacked</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">validate_distributed_problem_formulation</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span><span class="w"> </span><span class="n">mpc_split</span><span class="p">,</span><span class="w"> </span><span class="n">names</span><span class="p">);</span><span class="w"></span>
+<span class="c">%% main</span>
+<span class="c">% case-file-generator</span>
+<span class="n">mpc_merge</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">run_case_file_generator</span><span class="p">(</span><span class="n">mpc_master</span><span class="p">,</span><span class="w"> </span><span class="n">mpc_workers</span><span class="p">,</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">fields_to_merge</span><span class="p">,</span><span class="w"> </span><span class="n">names</span><span class="p">);</span>
+<span class="c">% case-file-splitter</span>
+<span class="n">mpc_split</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">run_case_file_splitter</span><span class="p">(</span><span class="n">mpc_merge</span><span class="p">,</span><span class="w"> </span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">names</span><span class="p">);</span>
+<span class="c">% generate problem formulation for aladin</span>
+<span class="n">problem</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">generate_distributed_problem_for_aladin</span><span class="p">(</span><span class="n">mpc_split</span><span class="p">,</span><span class="w"> </span><span class="n">names</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;least-squares&#39;</span><span class="p">);</span>
+<span class="c">% add a solver</span>
+<span class="n">problem</span><span class="p">.</span><span class="n">solver</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;fmincon&#39;</span><span class="p">;</span>
+<span class="c">% validate problem formulation</span>
+<span class="p">[</span><span class="n">xval</span><span class="p">,</span><span class="w"> </span><span class="n">xval_stacked</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">validate_distributed_problem_formulation</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span><span class="w"> </span><span class="n">mpc_split</span><span class="p">,</span><span class="w"> </span><span class="n">names</span><span class="p">);</span>
 
-<span class="n">opts</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">struct</span><span class="p">(</span><span class="s">&#39;maxiter&#39;</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;solveQP&#39;</span><span class="p">,</span><span class="s">&#39;MA57&#39;</span><span class="p">);</span><span class="w"></span>
-<span class="n">opts</span><span class="p">.</span><span class="n">reg</span><span class="w"> </span><span class="p">=</span><span class="s">&#39;false&#39;</span><span class="p">;</span><span class="w"></span>
-<span class="n">opts</span><span class="p">.</span><span class="n">rho0</span><span class="p">=</span><span class="w"> </span><span class="mf">1e2</span><span class="p">;</span><span class="w"></span>
+<span class="n">opts</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">struct</span><span class="p">(</span><span class="s">&#39;maxiter&#39;</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;solveQP&#39;</span><span class="p">,</span><span class="s">&#39;MA57&#39;</span><span class="p">);</span>
+<span class="n">opts</span><span class="p">.</span><span class="n">reg</span><span class="w"> </span><span class="p">=</span><span class="s">&#39;false&#39;</span><span class="p">;</span>
+<span class="n">opts</span><span class="p">.</span><span class="n">rho0</span><span class="p">=</span><span class="w"> </span><span class="mf">1e2</span><span class="p">;</span>
 
-<span class="p">[</span><span class="n">xsol_aladin</span><span class="p">,</span><span class="w"> </span><span class="n">xsol_stack_aladin</span><span class="p">,</span><span class="w"> </span><span class="n">mpc_sol_aladin</span><span class="p">,</span><span class="w"> </span><span class="n">logg</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">solve_distributed_problem_with_aladin</span><span class="p">(</span><span class="n">mpc_split</span><span class="p">,</span><span class="w"> </span><span class="n">problem</span><span class="p">,</span><span class="w"> </span><span class="n">names</span><span class="p">,</span><span class="w"> </span><span class="n">opts</span><span class="p">);</span><span class="w"></span>
+<span class="p">[</span><span class="n">xsol_aladin</span><span class="p">,</span><span class="w"> </span><span class="n">xsol_stack_aladin</span><span class="p">,</span><span class="w"> </span><span class="n">mpc_sol_aladin</span><span class="p">,</span><span class="w"> </span><span class="n">logg</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">solve_distributed_problem_with_aladin</span><span class="p">(</span><span class="n">mpc_split</span><span class="p">,</span><span class="w"> </span><span class="n">problem</span><span class="p">,</span><span class="w"> </span><span class="n">names</span><span class="p">,</span><span class="w"> </span><span class="n">opts</span><span class="p">);</span>
 
-<span class="n">comparison_aladin</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">compare_results</span><span class="p">(</span><span class="n">xval</span><span class="p">,</span><span class="w"> </span><span class="n">xsol_aladin</span><span class="p">)</span><span class="w"></span>
-<span class="n">compare_constraints_violation</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span><span class="w"> </span><span class="n">logg</span><span class="p">);</span><span class="w"></span>
-</code></pre></div>
-</td></tr></table>
+<span class="n">comparison_aladin</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">compare_results</span><span class="p">(</span><span class="n">xval</span><span class="p">,</span><span class="w"> </span><span class="n">xsol_aladin</span><span class="p">)</span>
+<span class="n">compare_constraints_violation</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span><span class="w"> </span><span class="n">logg</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+
+
+
+
+
                 
-              
-              
-                
-
-
-              
-            </article>
-          </div>
+              </article>
+            </div>
+          
+          
         </div>
+        
       </main>
       
-        
-<footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
-        <a href="../overview/" class="md-footer__link md-footer__link--prev" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              Overview
-            </div>
-          </div>
-        </a>
-      
-      
-        <a href="../assumptions/" class="md-footer__link md-footer__link--next" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Assumptions
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
+        <footer class="md-footer">
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
-      <div class="md-footer-copyright">
-        
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
-      </div>
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
       
     </div>
   </div>
@@ -1087,12 +1147,15 @@ This function provides a graphical impression of the overall constraint violatio
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.ca5457b8.min.js"></script>
+      <script src="../assets/javascripts/bundle.220ee61c.min.js"></script>
       
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+        
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+        
       
     
   </body>

@@ -9,14 +9,19 @@
         <meta name="description" content="Documentation for rapidPF">
       
       
-      
         <meta name="author" content="Tillmann Mühlpfordt">
       
       
         <link rel="canonical" href="https://kit-iai.github.io/rapidPF/problem-formulation/">
       
-      <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.3">
+      
+        <link rel="prev" href="../assumptions/">
+      
+      
+        <link rel="next" href="../mfiles/01_generator/create_skeleton_mpc/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.18">
     
     
       
@@ -24,41 +29,39 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.1655a90d.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.26e3688c.min.css">
+      
+      
+
+    
+    
+    
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.7fa14f5b.min.css">
-        
-      
-    
-    
-    
-      
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
-        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
-    
     
     
       <link rel="stylesheet" href="../css/extra.css">
     
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
+
+    
     
     
   </head>
   
   
-    
-    
-    
-    
-    
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
-      
+    <body dir="ltr">
   
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -75,18 +78,21 @@
       
     </div>
     
+    
       
 
-<header class="md-header" data-md-component="header">
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="https://kit-iai.github.io/rapidPF/" title="rapidPF documentation" class="md-header__button md-logo" aria-label="rapidPF documentation">
+    <a href=".." title="rapidPF documentation" class="md-header__button md-logo" aria-label="rapidPF documentation" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -104,26 +110,28 @@
         </div>
       </div>
     </div>
-    <div class="md-header__options">
-      
-    </div>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
       </label>
-      
-<div class="md-search" data-md-component="search" role="dialog">
+      <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -131,7 +139,7 @@
           <div class="md-search-result__meta">
             Initializing search
           </div>
-          <ol class="md-search-result__list"></ol>
+          <ol class="md-search-result__list" role="presentation"></ol>
         </div>
       </div>
     </div>
@@ -140,11 +148,10 @@
     
     
       <div class="md-header__source">
-        
-<a href="https://github.com/KIT-IAI/rapidPF/" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/xinliang-dai/rapidPF" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     GitHub
@@ -153,11 +160,14 @@
       </div>
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -171,25 +181,22 @@
                     
 
 
-
-
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="https://kit-iai.github.io/rapidPF/" title="rapidPF documentation" class="md-nav__button md-logo" aria-label="rapidPF documentation">
+    <a href=".." title="rapidPF documentation" class="md-nav__button md-logo" aria-label="rapidPF documentation" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
 
     </a>
     rapidPF documentation
   </label>
   
     <div class="md-nav__source">
-      
-<a href="https://github.com/KIT-IAI/rapidPF/" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/xinliang-dai/rapidPF" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     GitHub
@@ -300,7 +307,8 @@
   
     <li class="md-nav__item md-nav__item--active">
       
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
       
         
       
@@ -315,7 +323,9 @@
       </a>
       
         
+
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -394,13 +404,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
       
-      <label class="md-nav__link" for="__nav_8">
-        Mfiles
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-      <nav class="md-nav" aria-label="Mfiles" data-md-level="1">
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+          Mfiles
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_8">
           <span class="md-nav__icon md-icon"></span>
           Mfiles
@@ -408,6 +423,7 @@
         <ul class="md-nav__list" data-md-scrollfix>
           
             
+              
   
   
   
@@ -415,13 +431,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_1" type="checkbox" id="__nav_8_1" >
       
-      <label class="md-nav__link" for="__nav_8_1">
-        01 generator
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-      <nav class="md-nav" aria-label="01 generator" data-md-level="2">
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_1" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8_1" id="__nav_8_1_label" tabindex="0">
+          01 generator
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_1_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_8_1">
           <span class="md-nav__icon md-icon"></span>
           01 generator
@@ -429,6 +450,7 @@
         <ul class="md-nav__list" data-md-scrollfix>
           
             
+              
   
   
   
@@ -439,8 +461,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -451,8 +475,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -463,14 +489,17 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -478,13 +507,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_2" type="checkbox" id="__nav_8_2" >
       
-      <label class="md-nav__link" for="__nav_8_2">
-        02 splitter
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-      <nav class="md-nav" aria-label="02 splitter" data-md-level="2">
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8_2" id="__nav_8_2_label" tabindex="0">
+          02 splitter
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_2_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_8_2">
           <span class="md-nav__icon md-icon"></span>
           02 splitter
@@ -492,6 +526,7 @@
         <ul class="md-nav__list" data-md-scrollfix>
           
             
+              
   
   
   
@@ -502,8 +537,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -514,8 +551,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -526,14 +565,17 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -541,13 +583,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_3" type="checkbox" id="__nav_8_3" >
       
-      <label class="md-nav__link" for="__nav_8_3">
-        03 parser
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-      <nav class="md-nav" aria-label="03 parser" data-md-level="2">
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8_3" id="__nav_8_3_label" tabindex="0">
+          03 parser
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_3_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_8_3">
           <span class="md-nav__icon md-icon"></span>
           03 parser
@@ -555,6 +602,7 @@
         <ul class="md-nav__list" data-md-scrollfix>
           
             
+              
   
   
   
@@ -565,8 +613,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -577,32 +627,66 @@
     </li>
   
 
+            
           
             
+              
   
   
   
     <li class="md-nav__item">
-      <a href="../mfiles/03_parser/run_ADMM_cplex/" class="md-nav__link">
-        run ADMM cplex
+      <a href="../mfiles/03_parser/create_power_flow_equation_for_p/" class="md-nav__link">
+        create_power_flow_equation_for_p
       </a>
     </li>
   
 
+            
           
             
+              
   
   
   
     <li class="md-nav__item">
-      <a href="../mfiles/03_parser/solve_distributed_problem_with_admm_cplex/" class="md-nav__link">
-        solve_distributed_problem_with_aladin
+      <a href="../mfiles/03_parser/create_power_flow_equation_for_q/" class="md-nav__link">
+        create_power_flow_equation_for_q
       </a>
     </li>
   
 
+            
           
             
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mfiles/03_parser/generate_distributed_problem/" class="md-nav__link">
+        generate_distributed_problem
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mfiles/03_parser/solve_distributed_problem_centralized/" class="md-nav__link">
+        solve_distributed_problem_centralized
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
   
   
   
@@ -613,8 +697,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -625,12 +711,14 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
     </li>
   
 
+            
           
         </ul>
       </nav>
@@ -665,7 +753,9 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -733,19 +823,20 @@
               </div>
             
           
-          <div class="md-content" data-md-component="content">
-            <article class="md-content__inner md-typeset">
-              
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
                 
-                  <a href="https://github.com/KIT-IAI/rapidPF/edit/master/docs/problem-formulation.md" title="Edit this page" class="md-content__button md-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
-                  </a>
-                
-                
-                <h1 id="problem-formulation">Problem formulation</h1>
+                  
+
+  
+  
+
+
+<h1 id="problem-formulation">Problem formulation</h1>
 <p>Here we present the mathematical formulation of the distributed power
 flow problem, which simply reads</p>
-<div>
+<div class="arithmatex">
 <div class="MathJax_Preview">\begin{aligned}
         g^{\text{pf}}_i( x_i, z_i ) &amp;= 0 \\
         g^{\text{bus}}_i ( x_i ) &amp;= 0 \\
@@ -766,7 +857,7 @@ flow problem, which simply reads</p>
     \end{aligned}</script>
 </div>
 <p>In plain words, the first set of equations satisfies the power flow
-equations in each region <span><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span>, the second set of equations accounts for
+equations in each region <span class="arithmatex"><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span>, the second set of equations accounts for
 the bus specifications, and the third set of equations ensures consensus
 among the nodes that are shared between regions (will be explained
 below).</p>
@@ -785,16 +876,16 @@ splitting of lines we simply copy neighboring buses within regions.</p>
 <h2 id="core-nodes-copy-nodes">Core nodes &amp; copy nodes</h2>
 <p>Suppose we have a grid that looks like as follows</p>
 <p><img alt="image" src="visualization/original.png" /></p>
-<p>There are a total of <span><span class="MathJax_Preview">12</span><script type="math/tex">12</script></span> buses in the system. The dashed lines
-indicate the three different regions: buses <span><span class="MathJax_Preview">\{ 1, 2, 3 \}</span><script type="math/tex">\{ 1, 2, 3 \}</script></span> belong to
-what we call the master system, buses <span><span class="MathJax_Preview">\{4, 5, 6, 7 \}</span><script type="math/tex">\{4, 5, 6, 7 \}</script></span> belong to what
-we call the (first) worker system, and buses <span><span class="MathJax_Preview">\{ 8, 9, 10, 11, 12 \}</span><script type="math/tex">\{ 8, 9, 10, 11, 12 \}</script></span>
+<p>There are a total of <span class="arithmatex"><span class="MathJax_Preview">12</span><script type="math/tex">12</script></span> buses in the system. The dashed lines
+indicate the three different regions: buses <span class="arithmatex"><span class="MathJax_Preview">\{ 1, 2, 3 \}</span><script type="math/tex">\{ 1, 2, 3 \}</script></span> belong to
+what we call the master system, buses <span class="arithmatex"><span class="MathJax_Preview">\{4, 5, 6, 7 \}</span><script type="math/tex">\{4, 5, 6, 7 \}</script></span> belong to what
+we call the (first) worker system, and buses <span class="arithmatex"><span class="MathJax_Preview">\{ 8, 9, 10, 11, 12 \}</span><script type="math/tex">\{ 8, 9, 10, 11, 12 \}</script></span>
 belong to the (second) worker system. Hence, we distinguish between
 <em>master</em> and <em>worker</em> systems; these local or regional systems (or just
 <em>subsystems</em>) make up the overall power system.</p>
 <p>For the overall system the power flow problem means to compute the
 values</p>
-<div>
+<div class="arithmatex">
 <div class="MathJax_Preview">\begin{aligned}
     x_i = \begin{bmatrix}
         \theta_i \\
@@ -812,10 +903,10 @@ values</p>
     \end{bmatrix}
     \in \mathbb{R}^{4 n}\end{aligned}</script>
 </div>
-<p>for all <span><span class="MathJax_Preview">i \in \{1, \dots, 12 \}</span><script type="math/tex">i \in \{1, \dots, 12 \}</script></span>. A prototypical power flow problem
+<p>for all <span class="arithmatex"><span class="MathJax_Preview">i \in \{1, \dots, 12 \}</span><script type="math/tex">i \in \{1, \dots, 12 \}</script></span>. A prototypical power flow problem
 can be formulated mathematically as a system of nonlinear equations of
 the form</p>
-<div>
+<div class="arithmatex">
 <div class="MathJax_Preview">\begin{aligned}
         g^{\text{pf}}( x) &amp;= 0, \\
         g^{\text{bus}}( x) &amp;= 0,
@@ -825,10 +916,10 @@ the form</p>
         g^{\text{bus}}( x) &= 0,
     \end{aligned}</script>
 </div>
-<p>where <span><span class="MathJax_Preview">g^{\text{pf}}( x) = 0</span><script type="math/tex">g^{\text{pf}}( x) = 0</script></span> constitutes the <span><span class="MathJax_Preview">2 \times 12</span><script type="math/tex">2 \times 12</script></span> power
-flow equations, and <span><span class="MathJax_Preview">g^{\text{bus}}( x) = 0</span><script type="math/tex">g^{\text{bus}}( x) = 0</script></span> stands for the remaining
-<span><span class="MathJax_Preview">2 \times 12</span><script type="math/tex">2 \times 12</script></span> bus specifications. This yields a total of
-<span><span class="MathJax_Preview">4 \times 12</span><script type="math/tex">4 \times 12</script></span> equations for <span><span class="MathJax_Preview">4 \times 12</span><script type="math/tex">4 \times 12</script></span> unknowns. Arguably, this
+<p>where <span class="arithmatex"><span class="MathJax_Preview">g^{\text{pf}}( x) = 0</span><script type="math/tex">g^{\text{pf}}( x) = 0</script></span> constitutes the <span class="arithmatex"><span class="MathJax_Preview">2 \times 12</span><script type="math/tex">2 \times 12</script></span> power
+flow equations, and <span class="arithmatex"><span class="MathJax_Preview">g^{\text{bus}}( x) = 0</span><script type="math/tex">g^{\text{bus}}( x) = 0</script></span> stands for the remaining
+<span class="arithmatex"><span class="MathJax_Preview">2 \times 12</span><script type="math/tex">2 \times 12</script></span> bus specifications. This yields a total of
+<span class="arithmatex"><span class="MathJax_Preview">4 \times 12</span><script type="math/tex">4 \times 12</script></span> equations for <span class="arithmatex"><span class="MathJax_Preview">4 \times 12</span><script type="math/tex">4 \times 12</script></span> unknowns. Arguably, this
 leads to large systems of nonlinear equations as soon as the number of
 buses in the power system increases. From here on we call this
 prototypical power flow problem we just described the <em>centralized</em>
@@ -841,13 +932,13 @@ Iteration here means to find consensus on the physical values of the
 exchanged power between the subsystems.</p>
 <p>Before making this idea mathematically precise we introduce some more
 Nomenclature. Suppose we are seated in the master system, the one
-composed of buses <span><span class="MathJax_Preview">\{1, 2, 3 \}</span><script type="math/tex">\{1, 2, 3 \}</script></span>. From our perspective both worker
-systems are our <em>neighbors</em>. More precisely, we know only that bus <span><span class="MathJax_Preview">4</span><script type="math/tex">4</script></span>
+composed of buses <span class="arithmatex"><span class="MathJax_Preview">\{1, 2, 3 \}</span><script type="math/tex">\{1, 2, 3 \}</script></span>. From our perspective both worker
+systems are our <em>neighbors</em>. More precisely, we know only that bus <span class="arithmatex"><span class="MathJax_Preview">4</span><script type="math/tex">4</script></span>
 (located in the first worker system) is our connection to the first worker
-system. Likewise, bus <span><span class="MathJax_Preview">8</span><script type="math/tex">8</script></span> (located in the second worker system) is our
+system. Likewise, bus <span class="arithmatex"><span class="MathJax_Preview">8</span><script type="math/tex">8</script></span> (located in the second worker system) is our
 connection to the second worker system. To distinguish between these
-different kinds of buses we call the buses <span><span class="MathJax_Preview">\{1, 2, 3 \}</span><script type="math/tex">\{1, 2, 3 \}</script></span> the <em>core</em>
-nodes of the master system, and buses <span><span class="MathJax_Preview">\{ 4, 8\}</span><script type="math/tex">\{ 4, 8\}</script></span> the <em>copy</em> nodes.
+different kinds of buses we call the buses <span class="arithmatex"><span class="MathJax_Preview">\{1, 2, 3 \}</span><script type="math/tex">\{1, 2, 3 \}</script></span> the <em>core</em>
+nodes of the master system, and buses <span class="arithmatex"><span class="MathJax_Preview">\{ 4, 8\}</span><script type="math/tex">\{ 4, 8\}</script></span> the <em>copy</em> nodes.
 Importantly, all other nodes do not exist for us; they are ignored.
 Graphically, our world looks as follows.</p>
 <p><img alt="image" src="visualization/version_1.png" /></p>
@@ -856,16 +947,16 @@ for the master system we need to know the voltages at the <em>copy</em> nodes.
 And in case we don’t know the values (which we really don’t because the
 copy nodes do not belong to our jurisdiction), then we have to <em>assume</em>
 values for them. This can be thought of as copying the buses into the
-shaded are denoted as “<span><span class="MathJax_Preview">\text{copy + core nodes}</span><script type="math/tex">\text{copy + core nodes}</script></span>,” hence the name.</p>
+shaded are denoted as “<span class="arithmatex"><span class="MathJax_Preview">\text{copy + core nodes}</span><script type="math/tex">\text{copy + core nodes}</script></span>,” hence the name.</p>
 <p>Taking on the perspective of the first worker system we see: our core
-nodes are <span><span class="MathJax_Preview">\{ 4, 5, 6, 7 \}</span><script type="math/tex">\{ 4, 5, 6, 7 \}</script></span>, and there is just one copy bus <span><span class="MathJax_Preview">1</span><script type="math/tex">1</script></span>,
+nodes are <span class="arithmatex"><span class="MathJax_Preview">\{ 4, 5, 6, 7 \}</span><script type="math/tex">\{ 4, 5, 6, 7 \}</script></span>, and there is just one copy bus <span class="arithmatex"><span class="MathJax_Preview">1</span><script type="math/tex">1</script></span>,
 the first bus in the master system. Our world looks as follows.</p>
 <p><img alt="image" src="visualization/version_2.png" /></p>
 <p>Being able to distinguish between core nodes and copy nodes allows to
 formulate the distributed power flow clearer: <em>solve the power flow
 problem in each subsystem and attain consensus between the copy nodes
 and their core node equivalents.</em> By core node equivalent we mean the
-following: the first copy bus of the master system has bus <span><span class="MathJax_Preview">4</span><script type="math/tex">4</script></span> as its
+following: the first copy bus of the master system has bus <span class="arithmatex"><span class="MathJax_Preview">4</span><script type="math/tex">4</script></span> as its
 core node equivalent. It is clear from intuition that if the voltage at
 the copy node in each subsystem corresponds to the value of its core
 node equivalent, then the solution of the distributed power flow problem
@@ -883,32 +974,32 @@ throughout.</p>
 </thead>
 <tbody>
 <tr>
-<td align="left"><span><span class="MathJax_Preview">n^{\text{reg}}</span><script type="math/tex">n^{\text{reg}}</script></span></td>
+<td align="left"><span class="arithmatex"><span class="MathJax_Preview">n^{\text{reg}}</span><script type="math/tex">n^{\text{reg}}</script></span></td>
 <td align="left">Number of regions</td>
 </tr>
 <tr>
-<td align="left"><span><span class="MathJax_Preview">n^{\text{conn}}</span><script type="math/tex">n^{\text{conn}}</script></span></td>
+<td align="left"><span class="arithmatex"><span class="MathJax_Preview">n^{\text{conn}}</span><script type="math/tex">n^{\text{conn}}</script></span></td>
 <td align="left">Number of connecting lines between regions</td>
 </tr>
 <tr>
-<td align="left"><span><span class="MathJax_Preview">n^\text{core}_{i}</span><script type="math/tex">n^\text{core}_{i}</script></span></td>
-<td align="left">Number of core nodes in region <span><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span></td>
+<td align="left"><span class="arithmatex"><span class="MathJax_Preview">n^\text{core}_{i}</span><script type="math/tex">n^\text{core}_{i}</script></span></td>
+<td align="left">Number of core nodes in region <span class="arithmatex"><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span></td>
 </tr>
 <tr>
-<td align="left"><span><span class="MathJax_Preview">n^\text{copy}_{i}</span><script type="math/tex">n^\text{copy}_{i}</script></span></td>
-<td align="left">Number of copy nodes in region <span><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span></td>
+<td align="left"><span class="arithmatex"><span class="MathJax_Preview">n^\text{copy}_{i}</span><script type="math/tex">n^\text{copy}_{i}</script></span></td>
+<td align="left">Number of copy nodes in region <span class="arithmatex"><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span></td>
 </tr>
 <tr>
-<td align="left"><span><span class="MathJax_Preview">x_{i}</span><script type="math/tex">x_{i}</script></span></td>
-<td align="left">State of core nodes in region <span><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span></td>
+<td align="left"><span class="arithmatex"><span class="MathJax_Preview">x_{i}</span><script type="math/tex">x_{i}</script></span></td>
+<td align="left">State of core nodes in region <span class="arithmatex"><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span></td>
 </tr>
 <tr>
-<td align="left"><span><span class="MathJax_Preview">z_{i}</span><script type="math/tex">z_{i}</script></span></td>
-<td align="left">State of copy nodes in region <span><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span></td>
+<td align="left"><span class="arithmatex"><span class="MathJax_Preview">z_{i}</span><script type="math/tex">z_{i}</script></span></td>
+<td align="left">State of copy nodes in region <span class="arithmatex"><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span></td>
 </tr>
 </tbody>
 </table>
-<p>We compose the set of buses of each region <span><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span> into a set of <em>core
+<p>We compose the set of buses of each region <span class="arithmatex"><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span> into a set of <em>core
 nodes</em>, and a set of <em>copy nodes</em>. The core nodes are the original nodes
 that make up the power system. The copy nodes are the nodes that connect
 the power system to the neighboring power systems. Hence, the copy nodes
@@ -918,7 +1009,7 @@ the neighboring buses such that power flow equations can be constructed.</p>
 <p>The state of the core nodes contains the voltage angles, the voltage
 magnitudes, the net active power, and the net reactive power of all core
 nodes</p>
-<div>
+<div class="arithmatex">
 <div class="MathJax_Preview">\begin{aligned}
     \label{eq:state-core}
     x_i = \begin{bmatrix}
@@ -940,7 +1031,7 @@ nodes</p>
 </div>
 <p>The state of the copy nodes contains the voltage angles and the voltage
 magnitudes of all copy nodes</p>
-<div>
+<div class="arithmatex">
 <div class="MathJax_Preview">\begin{aligned}
     \label{eq:state-copy}
     z_i = \begin{bmatrix}
@@ -956,25 +1047,25 @@ magnitudes of all copy nodes</p>
     \end{bmatrix}
     \in \mathbb{R}^{2 n^\text{copy}_i}.\end{aligned}</script>
 </div>
-<p>We see: each region <span><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span> is described by a total of
-<span><span class="MathJax_Preview">4 n^\text{core}_i + 2 n^\text{copy}_i</span><script type="math/tex">4 n^\text{core}_i + 2 n^\text{copy}_i</script></span> real numbers.</p>
+<p>We see: each region <span class="arithmatex"><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span> is described by a total of
+<span class="arithmatex"><span class="MathJax_Preview">4 n^\text{core}_i + 2 n^\text{copy}_i</span><script type="math/tex">4 n^\text{core}_i + 2 n^\text{copy}_i</script></span> real numbers.</p>
 <h3 id="power-flow-equations">Power flow equations</h3>
-<p>In region <span><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span> we formulate a total of <span><span class="MathJax_Preview">2 n^\text{core}_i</span><script type="math/tex">2 n^\text{core}_i</script></span> power flow
+<p>In region <span class="arithmatex"><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span> we formulate a total of <span class="arithmatex"><span class="MathJax_Preview">2 n^\text{core}_i</span><script type="math/tex">2 n^\text{core}_i</script></span> power flow
 equations
-<span><span class="MathJax_Preview">g^{\text{pf}}_i \colon \mathbb{R}^{4 n^\text{core}_i} \times \mathbb{R}^{2 n^\text{copy}_i} \rightarrow \mathbb{R}^{2 n^\text{core}_i}</span><script type="math/tex">g^{\text{pf}}_i \colon \mathbb{R}^{4 n^\text{core}_i} \times \mathbb{R}^{2 n^\text{copy}_i} \rightarrow \mathbb{R}^{2 n^\text{core}_i}</script></span>
+<span class="arithmatex"><span class="MathJax_Preview">g^{\text{pf}}_i \colon \mathbb{R}^{4 n^\text{core}_i} \times \mathbb{R}^{2 n^\text{copy}_i} \rightarrow \mathbb{R}^{2 n^\text{core}_i}</span><script type="math/tex">g^{\text{pf}}_i \colon \mathbb{R}^{4 n^\text{core}_i} \times \mathbb{R}^{2 n^\text{copy}_i} \rightarrow \mathbb{R}^{2 n^\text{core}_i}</script></span>
 for all core nodes</p>
-<div>
+<div class="arithmatex">
 <div class="MathJax_Preview">\begin{aligned}
     g^{\text{pf}}_i( x_i, z_i) = 0.\end{aligned}</div>
 <script type="math/tex; mode=display">\begin{aligned}
     g^{\text{pf}}_i( x_i, z_i) = 0.\end{aligned}</script>
 </div>
 <h3 id="bus-specifications">Bus specifications</h3>
-<p>In region <span><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span> we formulate a total of <span><span class="MathJax_Preview">2 n^\text{core}_i</span><script type="math/tex">2 n^\text{core}_i</script></span> bus
+<p>In region <span class="arithmatex"><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span> we formulate a total of <span class="arithmatex"><span class="MathJax_Preview">2 n^\text{core}_i</span><script type="math/tex">2 n^\text{core}_i</script></span> bus
 specifications
-<span><span class="MathJax_Preview">g^{\text{bus}}_i \colon \mathbb{R}^{4 n^\text{core}_i} \rightarrow \mathbb{R}^{2 n^\text{core}_i}</span><script type="math/tex">g^{\text{bus}}_i \colon \mathbb{R}^{4 n^\text{core}_i} \rightarrow \mathbb{R}^{2 n^\text{core}_i}</script></span>
+<span class="arithmatex"><span class="MathJax_Preview">g^{\text{bus}}_i \colon \mathbb{R}^{4 n^\text{core}_i} \rightarrow \mathbb{R}^{2 n^\text{core}_i}</span><script type="math/tex">g^{\text{bus}}_i \colon \mathbb{R}^{4 n^\text{core}_i} \rightarrow \mathbb{R}^{2 n^\text{core}_i}</script></span>
 for all core nodes</p>
-<div>
+<div class="arithmatex">
 <div class="MathJax_Preview">\begin{aligned}
     g^{\text{bus}}_i( x_i) = 0.\end{aligned}</div>
 <script type="math/tex; mode=display">\begin{aligned}
@@ -983,16 +1074,16 @@ for all core nodes</p>
 <h3 id="degrees-of-freedom">Degrees of freedom</h3>
 <p>Subtracting the number of equations from the number of decision
 variables gives us a total of</p>
-<div>
+<div class="arithmatex">
 <div class="MathJax_Preview">\begin{aligned}
     \underbrace{4 n^\text{core}_i + 2 n^\text{copy}_i}_{\text{Decision variables}} - \underbrace{2 n^\text{core}_i}_{\text{Power flow equations}} - \underbrace{2 n^\text{core}_i}_{\text{Bus specifications}} = \underbrace{2 n^\text{copy}_i}_{\text{Degrees of freedom}}\end{aligned}</div>
 <script type="math/tex; mode=display">\begin{aligned}
     \underbrace{4 n^\text{core}_i + 2 n^\text{copy}_i}_{\text{Decision variables}} - \underbrace{2 n^\text{core}_i}_{\text{Power flow equations}} - \underbrace{2 n^\text{core}_i}_{\text{Bus specifications}} = \underbrace{2 n^\text{copy}_i}_{\text{Degrees of freedom}}\end{aligned}</script>
 </div>
-<p>degrees of freedom for each region <span><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span>. These degrees of freedom must
+<p>degrees of freedom for each region <span class="arithmatex"><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span>. These degrees of freedom must
 be fixed globally by the consensus constraints.</p>
 <h2 id="decentralized-power-flow-problem">Decentralized power flow problem</h2>
-<div>
+<div class="arithmatex">
 <div class="MathJax_Preview">\begin{aligned}
         g^{\text{pf}}_i( x_i, z_i ) &amp;= 0 \\
         g^{\text{bus}}_i ( x_i ) &amp;= 0 \\
@@ -1013,66 +1104,36 @@ be fixed globally by the consensus constraints.</p>
     \end{aligned}</script>
 </div>
 <p>where the consensus matrices
-<span><span class="MathJax_Preview">A_i \in \mathbb{R}^{4 n^{\text{conn}}\times (4 n^\text{core}_i + 2 n^\text{copy}_i)}</span><script type="math/tex">A_i \in \mathbb{R}^{4 n^{\text{conn}}\times (4 n^\text{core}_i + 2 n^\text{copy}_i)}</script></span>
+<span class="arithmatex"><span class="MathJax_Preview">A_i \in \mathbb{R}^{4 n^{\text{conn}}\times (4 n^\text{core}_i + 2 n^\text{copy}_i)}</span><script type="math/tex">A_i \in \mathbb{R}^{4 n^{\text{conn}}\times (4 n^\text{core}_i + 2 n^\text{copy}_i)}</script></span>
 enforce equality of the voltage angle and the voltage magnitude at the
 copy buses and their respective original buses.</p>
-                
-              
-              
-                
 
 
-              
-            </article>
-          </div>
+
+
+
+                
+              </article>
+            </div>
+          
+          
         </div>
+        
       </main>
       
-        
-<footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
-        <a href="../assumptions/" class="md-footer__link md-footer__link--prev" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              Assumptions
-            </div>
-          </div>
-        </a>
-      
-      
-        <a href="../mfiles/01_generator/create_skeleton_mpc/" class="md-footer__link md-footer__link--next" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              create_skeleton_mpc
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
+        <footer class="md-footer">
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
-      <div class="md-footer-copyright">
-        
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
-      </div>
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
       
     </div>
   </div>
@@ -1082,12 +1143,15 @@ copy buses and their respective original buses.</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.ca5457b8.min.js"></script>
+      <script src="../assets/javascripts/bundle.220ee61c.min.js"></script>
       
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+        
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+        
       
     
   </body>
