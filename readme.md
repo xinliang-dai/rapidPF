@@ -1,3 +1,6 @@
+<!--[![Documentation Build](https://github.com/KIT-IAI/rapidPF/workflows/github-pages/badge.svg)](https://github.com/KIT-IAI/rapidPF/actions?query=workflow%3Agithub-pages)-->
+[![documentation](https://img.shields.io/badge/docs-stable-blue)](https://xinliang-dai.github.io/rapidPF/)
+
 - Start： run rapidPF/00_use-case/main_test.m
 
 - Code for Hypergraph based Distributed Sequential Quadratic Programming (HDSQP) can be found [here](https://github.com/xinliang-dai/rapidPF/blob/hdq-pf/00_use-case/DSQP_HDQ_detail.m). Description will be avaliable soon.
