@@ -2,7 +2,7 @@
 This is a beginning-to-end-example about how to solve distributed power flow with [the Aladin toolbox](https://github.com/alexe15/ALADIN.m).
 [Click here](#entire-code) to see the plain code.
 
-## Setup
+## setup
 Starting from the home directory of the package, let's make a tabula rasa and switch to the use case folder
 
 ```matlab
