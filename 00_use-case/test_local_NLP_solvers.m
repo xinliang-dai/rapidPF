@@ -8,7 +8,7 @@
 clc
 clear
 close all
-
+addpath(genpath('../00_use-case/'));
 addpath(genpath('../01_generator/'));
 addpath(genpath('../02_splitter/'));
 addpath(genpath('../03_parser/'));

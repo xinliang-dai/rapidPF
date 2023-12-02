@@ -7,7 +7,7 @@ docs_dir: docs/
 repo_url: https://github.com/KIT-IAI/rapidPF
    
 theme:
-    name: material
+    name: mkdocs
     navigation_depth: 2
 
 extra_css:
