@@ -45,19 +45,19 @@ For detailed usage instructions, theoretical background, and examples, please re
 
 ## Citation
 
-##### Hypergraph-Based Distributed Sequential Quadratic Programming (HDSQP)
 [1] [Hypergraph-Based Fast Distributed AC Power Flow Optimization](https://www.researchgate.net/publication/372342135_Hypergraph-Based_Fast_Distributed_AC_Power_Flow_Optimization), *62nd IEEE Conference on Decision and Control CDC, 2023*
+
+[2] [Rapid Scalable Distributed Power Flow with Open-Source Implementation](https://www.sciencedirect.com/science/article/pii/S2405896322006401), *9th IFAC Conference on Networked Systems NECSYS, 2022* 
+
+[3] [Distributed power flow and distributed optimization—Formulation, solution, and open source implementation](https://www.sciencedirect.com/science/article/pii/S2352467721000424), *Sustainable Energy, Grids and Networks, 2021*
+
 ```bash
 @inproceedings{dai2023hybrid,
     title={Hypergraph-Based Fast Distributed {AC} Power Flow Optimization},
     author={Dai, Xinliang and Lian, Yingzhao and Jiang, Yuning and Jones, Colin N and Hagenmeyer, Veit},
     booktitle={62rd Proc. IEEE Conf. Decis. Control (CDC)},
     year={2023},
-}
-```
-##### Large-scale Gauss-Newton based ALADIN
-[2] [Rapid Scalable Distributed Power Flow with Open-Source Implementation](https://www.sciencedirect.com/science/article/pii/S2405896322006401), *9th IFAC Conference on Networked Systems NECSYS, 2022* 
-```bash
+
 @inproceedings{dai2022rapid,
     title = {Rapid Scalable Distributed Power Flow with Open-Source Implementation},
     volume = {55},
@@ -68,11 +68,7 @@ For detailed usage instructions, theoretical background, and examples, please re
     issn = {2405-8963},
     author={Dai, Xinliang and Cai, Yichen and Jiang, Yuning and Hagenmeyer, Veit},
 }
-```
-##### Rapid prototyping for distributed power flow problems (rapidPF) + Gauss-Newton based ALADIN
 
-[3] [Distributed power flow and distributed optimization—Formulation, solution, and open source implementation](https://www.sciencedirect.com/science/article/pii/S2352467721000424), *Sustainable Energy, Grids and Networks, 2021*
-```bash
 @article{muhlpfordt2021distributed,
     title={Distributed power flow and distributed optimization—Formulation, solution, and open source implementation},
     author={M{\"u}hlpfordt, Tillmann and Dai, Xinliang and Engelmann, Alexander and Hagenmeyer, Veit},
@@ -81,5 +77,4 @@ For detailed usage instructions, theoretical background, and examples, please re
     pages={100471},
     year={2021},
     publisher={Elsevier}
-}
 ```
