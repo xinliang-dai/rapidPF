@@ -2,11 +2,11 @@
 [![documentation](https://img.shields.io/badge/docs-stable-blue)](https://xinliang-dai.github.io/rapidPF/)
 
 
-# Code Repository for Distributed AC Power Flow Optimization
+# Distributed AC Power Flow Optimization
 
 ## Abstract
 
-This repository hosts the codes for an advanced toolbox designed for solving distributed power flow problems. It is based on the research presented in three pivotal papers [[1](https://www.researchgate.net/publication/372342135_Hypergraph-Based_Fast_Distributed_AC_Power_Flow_Optimization)][[2](https://www.sciencedirect.com/science/article/pii/S2405896322006401)][[3](https://www.sciencedirect.com/science/article/pii/S2352467721000424)]. The toolbox is an evolution of the platform introduced in [[1](https://www.researchgate.net/publication/372342135_Hypergraph-Based_Fast_Distributed_AC_Power_Flow_Optimization)], which provided a framework for rapid prototyping using the Gauss-Newton Augmented Lagrangian Alternating Direction Inexact Newton (GN-ALADIN) method. Enhancements in this toolbox include improved scalability of the Gauss-Newton ALADIN method [[2](https://www.sciencedirect.com/science/article/pii/S2405896322006401)] and advanced problem reformulation capabilities using a hypergraph-based communication structure (introduced in [[3](https://www.sciencedirect.com/science/article/pii/S2352467721000424)]).
+This repository hosts the codes for an advanced toolbox designed for solving distributed power flow problems. It is based on the research presented in three pivotal papers [[1](https://www.researchgate.net/publication/372342135_Hypergraph-Based_Fast_Distributed_AC_Power_Flow_Optimization)][[2](https://www.sciencedirect.com/science/article/pii/S2405896322006401)][[3](https://www.sciencedirect.com/science/article/pii/S2352467721000424)]. The toolbox is an evolution of the platform introduced in [[3](https://www.sciencedirect.com/science/article/pii/S2352467721000424)], which provided a framework for rapid prototyping using the Gauss-Newton Augmented Lagrangian Alternating Direction Inexact Newton (GN-ALADIN) method. Enhancements in this toolbox include improved scalability of the Gauss-Newton ALADIN method [[2](https://www.sciencedirect.com/science/article/pii/S2405896322006401)] and advanced problem reformulation capabilities using a hypergraph-based communication structure (introduced in [[1](https://www.researchgate.net/publication/372342135_Hypergraph-Based_Fast_Distributed_AC_Power_Flow_Optimization)]).
 
 
 ## Key Features

@@ -1,13 +1,13 @@
 site_name: rapidPF documentation
 site_url: https://kit-iai.github.io/rapidPF/
 site_description: Documentation for rapidPF
-site_author: Tillmann Mühlpfordt
+site_author: Xinliang Dai
 docs_dir: docs/
 
 repo_url: https://github.com/KIT-IAI/rapidPF
    
 theme:
-    name: mkdocs
+    name: material
     navigation_depth: 2
 
 extra_css:
